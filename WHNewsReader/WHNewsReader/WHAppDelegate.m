@@ -33,6 +33,7 @@
     
     WHRecentTableViewController *recentController = [[WHRecentTableViewController alloc] init];
     recentController.title = @"Recent Stories";
+    recentController.tabBarItem.image = [UIImage imageNamed:@"recent-25.png"];
     UINavigationController *recentNavController = [[UINavigationController alloc] initWithRootViewController:recentController];
     
     WHCategoryTableViewController *categoryController =[[WHCategoryTableViewController alloc] init];
