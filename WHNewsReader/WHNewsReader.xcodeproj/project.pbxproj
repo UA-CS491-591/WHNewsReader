@@ -53,6 +53,7 @@
 		3FB1B17519251A30008777F9 /* WHRecentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FB1B17319251A30008777F9 /* WHRecentTableViewCell.xib */; };
 		3FB1B17A19251A6B008777F9 /* WHLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB1B17819251A6B008777F9 /* WHLoginView.m */; };
 		3FB1B17B19251A6B008777F9 /* WHLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FB1B17919251A6B008777F9 /* WHLoginView.xib */; };
+		8FBE84B6192521CC0019AC09 /* WHLoginObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FBE84B5192521CC0019AC09 /* WHLoginObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +131,8 @@
 		3FB1B17719251A6B008777F9 /* WHLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHLoginView.h; sourceTree = "<group>"; };
 		3FB1B17819251A6B008777F9 /* WHLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHLoginView.m; sourceTree = "<group>"; };
 		3FB1B17919251A6B008777F9 /* WHLoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WHLoginView.xib; sourceTree = "<group>"; };
+		8FBE84B4192521CC0019AC09 /* WHLoginObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHLoginObject.h; sourceTree = "<group>"; };
+		8FBE84B5192521CC0019AC09 /* WHLoginObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHLoginObject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -293,6 +296,8 @@
 				3FB1B141192519A5008777F9 /* WHRecentObject.m */,
 				3FB1B142192519A5008777F9 /* WHStoryObject.h */,
 				3FB1B143192519A5008777F9 /* WHStoryObject.m */,
+				8FBE84B4192521CC0019AC09 /* WHLoginObject.h */,
+				8FBE84B5192521CC0019AC09 /* WHLoginObject.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -518,6 +523,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FBE84B6192521CC0019AC09 /* WHLoginObject.m in Sources */,
 				3FB1B162192519C4008777F9 /* WHSearchTableViewController.m in Sources */,
 				3FB1B146192519A5008777F9 /* WHRecentObject.m in Sources */,
 				3FB1B15E192519C4008777F9 /* WHLoginViewController.m in Sources */,
