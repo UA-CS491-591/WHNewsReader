@@ -80,9 +80,10 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{   WHRecentTableViewCell *cell = [[WHRecentTableViewCell alloc] init];
+{   WHCategoryTableViewCell *cell = [[WHCategoryTableViewCell alloc] init];
+    
     if(!cell){
-        cell=[[WHRecentTableViewCell alloc] init];
+        cell=[[WHCategoryTableViewCell alloc] init];
         
     }
     cell.itemNameLabel.text=_categories[indexPath.row];

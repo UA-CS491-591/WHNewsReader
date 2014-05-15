@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WHCategoryTableViewCell.h"
 @interface WHCategoryTableViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 @end

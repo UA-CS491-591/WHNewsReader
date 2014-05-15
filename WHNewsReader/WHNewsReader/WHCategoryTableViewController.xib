@@ -17,8 +17,8 @@
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <connections>
-                <outlet property="dataSource" destination="-1" id="oZD-7G-c1L"/>
-                <outlet property="delegate" destination="-1" id="PrW-VG-O1s"/>
+                <outlet property="dataSource" destination="-1" id="A4h-nT-1WY"/>
+                <outlet property="delegate" destination="-1" id="wy6-Qp-wpm"/>
             </connections>
         </tableView>
     </objects>
