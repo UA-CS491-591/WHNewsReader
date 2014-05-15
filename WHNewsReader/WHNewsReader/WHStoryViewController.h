@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "WHStoryObject.m"
+#import "WHStoryObject.h"
 
 @interface WHStoryViewController : UIViewController
 @property WHStoryObject *selectedStory;

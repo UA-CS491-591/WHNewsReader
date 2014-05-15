@@ -7,7 +7,6 @@
 //
 
 #import "WHStoryViewController.h"
-#import "WHStoryObject.h"
 #import "WHAuthorObject.h"
 
 @interface WHStoryViewController ()

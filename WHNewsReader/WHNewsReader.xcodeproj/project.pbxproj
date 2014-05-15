@@ -53,6 +53,7 @@
 		3FB1B17519251A30008777F9 /* WHRecentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FB1B17319251A30008777F9 /* WHRecentTableViewCell.xib */; };
 		3FB1B17A19251A6B008777F9 /* WHLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB1B17819251A6B008777F9 /* WHLoginView.m */; };
 		3FB1B17B19251A6B008777F9 /* WHLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FB1B17919251A6B008777F9 /* WHLoginView.xib */; };
+		D8CF1448192522420043973E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8CF1447192522420043973E /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +131,7 @@
 		3FB1B17719251A6B008777F9 /* WHLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHLoginView.h; sourceTree = "<group>"; };
 		3FB1B17819251A6B008777F9 /* WHLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHLoginView.m; sourceTree = "<group>"; };
 		3FB1B17919251A6B008777F9 /* WHLoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WHLoginView.xib; sourceTree = "<group>"; };
+		D8CF1447192522420043973E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 		3F804D6C192518B100E0EFB9 = {
 			isa = PBXGroup;
 			children = (
+				D8CF1447192522420043973E /* Default-568h@2x.png */,
 				3F804D7E192518B100E0EFB9 /* WHNewsReader */,
 				3F804D97192518B100E0EFB9 /* WHNewsReaderTests */,
 				3F804D77192518B100E0EFB9 /* Frameworks */,
@@ -495,6 +498,7 @@
 				3FB1B13919251957008777F9 /* SplashScreen3-04.png in Resources */,
 				3FB1B12819251916008777F9 /* icononly copy40.png in Resources */,
 				3FB1B15B192519C4008777F9 /* WHAuthorViewController.xib in Resources */,
+				D8CF1448192522420043973E /* Default-568h@2x.png in Resources */,
 				3FB1B12719251916008777F9 /* Icon.png in Resources */,
 				3FB1B12919251916008777F9 /* icononly copy58.png in Resources */,
 				3FB1B12519251916008777F9 /* Icon_1.png in Resources */,
