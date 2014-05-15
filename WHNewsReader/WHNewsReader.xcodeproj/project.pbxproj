@@ -22,6 +22,7 @@
 		3F804D9E192518B100E0EFB9 /* WHNewsReaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F804D9D192518B100E0EFB9 /* WHNewsReaderTests.m */; };
 		3FA50A4419254A2B009367A4 /* WHCategoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA50A4219254A2B009367A4 /* WHCategoryTableViewCell.m */; };
 		3FA50A4519254A2B009367A4 /* WHCategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FA50A4319254A2B009367A4 /* WHCategoryTableViewCell.xib */; };
+		3FA50A4919255133009367A4 /* archive-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FA50A4819255133009367A4 /* archive-32.png */; };
 		3FB1B12519251916008777F9 /* Icon_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB1B11C19251916008777F9 /* Icon_1.png */; };
 		3FB1B12619251916008777F9 /* Icon_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB1B11D19251916008777F9 /* Icon_2.png */; };
 		3FB1B12719251916008777F9 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB1B11E19251916008777F9 /* Icon.png */; };
@@ -91,6 +92,7 @@
 		3FA50A4119254A2B009367A4 /* WHCategoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHCategoryTableViewCell.h; sourceTree = "<group>"; };
 		3FA50A4219254A2B009367A4 /* WHCategoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHCategoryTableViewCell.m; sourceTree = "<group>"; };
 		3FA50A4319254A2B009367A4 /* WHCategoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WHCategoryTableViewCell.xib; sourceTree = "<group>"; };
+		3FA50A4819255133009367A4 /* archive-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archive-32.png"; sourceTree = "<group>"; };
 		3FB1B11C19251916008777F9 /* Icon_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon_1.png; sourceTree = "<group>"; };
 		3FB1B11D19251916008777F9 /* Icon_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon_2.png; sourceTree = "<group>"; };
 		3FB1B11E19251916008777F9 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 		3FB1B11B1925190B008777F9 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				3FA50A4819255133009367A4 /* archive-32.png */,
 				3FB1B11C19251916008777F9 /* Icon_1.png */,
 				3FB1B11D19251916008777F9 /* Icon_2.png */,
 				3FB1B11E19251916008777F9 /* Icon.png */,
@@ -530,6 +533,7 @@
 				3FB1B12919251916008777F9 /* icononly copy58.png in Resources */,
 				3FB1B12519251916008777F9 /* Icon_1.png in Resources */,
 				3FB1B163192519C4008777F9 /* WHSearchTableViewController.xib in Resources */,
+				3FA50A4919255133009367A4 /* archive-32.png in Resources */,
 				3FB1B12619251916008777F9 /* Icon_2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -18,14 +18,16 @@
 
 @implementation WHCategoryTableViewController
 
--(id)init{
+-(instancetype)init{
     
     if (self) {
         
         self.tabBarItem.title=@"Search By Category";
+        self.tabBarItem.image=[UIImage imageNamed:@"archive-32.png"];
         
         self.title = @"Search By Category";
         _categories = [NSMutableArray array];
+        
     }
     
     
