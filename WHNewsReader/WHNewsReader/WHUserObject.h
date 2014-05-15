@@ -10,4 +10,14 @@
 
 @interface WHUserObject : NSObject
 
+@property NSString *Id;
+@property NSString *firstName;
+@property NSString *lastName;
+@property NSString *username;
+@property NSString *email;
+@property NSString *position;
+@property BOOL isWriter;
+@property NSString *imageUrl;
+
+
 @end

@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WHUserObject.h"
 
 @interface WHLoginObject : NSObject
 
 @property NSString *accessToken;
-
+@property WHUserObject *user;
 
 @end
