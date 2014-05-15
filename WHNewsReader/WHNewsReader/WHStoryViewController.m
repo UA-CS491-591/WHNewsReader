@@ -7,7 +7,6 @@
 //
 
 #import "WHStoryViewController.h"
-#import "WHStoryObject.h"
 #import "WHAuthorObject.h"
 
 @interface WHStoryViewController ()
@@ -40,7 +39,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    WHStoryObject *story = [[WHStoryObject alloc]init];
+    WHStoryObject *story = _selectedStory;
     _storyTitle.text = story.title;
     _storySubtitle.text = story.subtitle;
     _storyBody.text = story.body;
@@ -49,6 +48,7 @@
     [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
     _storyDate.text = [dateFormatter stringFromDate:story.datePublished];
     _storyImage.image = [NSURL URLWithString:story.imageUrl];
+    
 
     
 
