@@ -14,6 +14,7 @@
 @property NSString *Id;
 @property NSString *firstName;
 @property NSString *lastName;
+@property NSString *imageUrl;
 @property NSString *username;
 @property NSString *email;
 @property NSString *position;

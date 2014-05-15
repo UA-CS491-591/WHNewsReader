@@ -36,7 +36,8 @@
     // Do any additional setup after loading the view from its nib.
     WHAuthorObject *author = [[WHAuthorObject alloc] init];
    
-    _authorName.text = author.firstName, @" ", author.lastName;
+    _authorName.text = [NSString stringWithFormat:@"%@ %@", author.firstName, author.lastName]  ;
+    _authorImage.image = [NSURL URLWithString:author.imageUrl];
     _authorPosition.text = author.position;
     _authorEmail.text = author.email;
     _authorUsername.text = author.username;
