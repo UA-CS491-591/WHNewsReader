@@ -37,6 +37,7 @@
     [super viewDidLoad];
     self.recentItems = [[NSMutableArray alloc] init];
     [self loadTestData];
+    //[self sendAsynchronousRequest];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
