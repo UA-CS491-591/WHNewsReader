@@ -7,7 +7,7 @@
 //
 
 #import "WHCategoryTableViewController.h"
-
+#import "WHRecentTableViewCell.h"
 
 
 @interface WHCategoryTableViewController ()
@@ -18,23 +18,26 @@
 
 @implementation WHCategoryTableViewController
 
--(id)initWithStyle:(UITableViewStyle)style{
-    self = [super initWithStyle:style];
+-(id)init{
+    
     if (self) {
-        //_categoryTableView = [[WHCategoryTableView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        
         self.tabBarItem.title=@"Search By Category";
         
+        self.title = @"Search By Category";
+        _categories = [NSMutableArray array];
     }
+    
     
     return self;
 }
 
--(NSMutableArray *)checkArray{
-    if(self.categories==nil){
-        [self loadCategories];
-    }
-    return self.categories;
-}
+//-(NSMutableArray *)checkArray{
+    //if(self.categories==nil){
+     //   [self loadCategories];
+    //}
+    //return self.categories;
+//}
 
 -(void)loadCategories{
     
@@ -42,6 +45,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [_categories addObject:@"Test1"];
+    [_categories addObject:@"Test2"];
     
     
     // Uncomment the following line to preserve selection between presentations.
@@ -63,26 +68,31 @@
 {
 
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
     // Return the number of rows in the section.
-    return 0;
+    return _categories.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+{   WHRecentTableViewCell *cell = [[WHRecentTableViewCell alloc] init];
+    if(!cell){
+        cell=[[WHRecentTableViewCell alloc] init];
+        
+    }
+    cell.itemNameLabel.text=_categories[indexPath.row];
     
-    // Configure the cell...
+    
+    
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.

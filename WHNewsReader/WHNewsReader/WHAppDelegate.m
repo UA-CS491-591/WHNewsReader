@@ -37,8 +37,10 @@
     UINavigationController *recentNavController = [[UINavigationController alloc] initWithRootViewController:recentController];
     
     WHCategoryTableViewController *categoryController =[[WHCategoryTableViewController alloc] init];
+    categoryController.title=@"Search By Category";
+    UINavigationController *catNavController = [[UINavigationController alloc] initWithRootViewController:categoryController];
     
-    [_tabBarController setViewControllers:@[searchNavController, recentNavController, categoryController]];
+    [_tabBarController setViewControllers:@[searchNavController, recentNavController, catNavController]];
     
     [self.window setRootViewController:_tabBarController];
     
