@@ -10,5 +10,5 @@
 #import "WHAuthorObject.h"
 
 @interface WHAuthorViewController : UIViewController
-
+@property WHAuthorObject *selectedAuthor;
 @end
