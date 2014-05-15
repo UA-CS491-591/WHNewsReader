@@ -1,5 +1,5 @@
 //
-//  WHLoginObject.h
+//  WHUserObject.h
 //  WHNewsReader
 //
 //  Created by Mason Saucier on 5/15/14.
@@ -8,9 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface WHLoginObject : NSObject
-
-@property NSString *accessToken;
-
+@interface WHUserObject : NSObject
 
 @end
