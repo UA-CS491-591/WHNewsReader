@@ -45,20 +45,57 @@
     searchBar.placeholder = @"Search";
     self.tableView.tableHeaderView = searchBar;
     
-    UISearchDisplayController *searchDC = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
-    
+    /*UISearchDisplayController *searchDC = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
+    */
     // The above assigns self.searchDisplayController, but without retaining.
     // Force the read-only property to be set and retained.
-    [self performSelector:@selector(setSearchDisplayController:) withObject:searchDC];
+    /*[self performSelector:@selector(setSearchDisplayController:) withObject:searchDC];
     
     searchDC.delegate = self;
     searchDC.searchResultsDataSource = self;
     searchDC.searchResultsDelegate = self;
+    */
+    
+    [self populateInitialData];
     
     
     
     
-    
+}
+
+-(void)populateInitialData
+{
+    [WHDataRetrieval setUserToken:@"b7a2ac80-67a7-41bb-a7ff-8e6574b0bdf2"];
+    [WHDataRetrieval getStoryRecent:[WHDataRetrieval userToken] completetionHandler:
+     ^(NSURLResponse *response, NSData *data, NSError *error){
+         
+         _items = [NSObject arrayOfType:[WHStoryObject class] FromJSONData:data];
+         
+         dispatch_async(dispatch_get_main_queue(), ^{
+             [self.tableView reloadData];
+         });
+         
+     }];
+}
+
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    if ([searchText  isEqual: @""]) {
+        [self populateInitialData];
+    }
+    else {
+        [WHDataRetrieval setUserToken:@"b7a2ac80-67a7-41bb-a7ff-8e6574b0bdf2"];
+        [WHDataRetrieval getStorySearch:[WHDataRetrieval userToken] searchString:searchText completetionHandler:
+         ^(NSURLResponse *response, NSData *data, NSError *error){
+             
+             _items = [NSObject arrayOfType:[WHStoryObject class] FromJSONData:data];
+             
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 [self.tableView reloadData];
+             });
+             
+         }];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,7 +109,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return _items.count > 0 ? 1 : 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -88,10 +125,10 @@
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
-    //int temp = [indexPath row];
-    
     WHStoryObject *story = [_items objectAtIndex:indexPath.row];
     cell.textLabel.text = [story title];
+    
+    
     
     return cell;
 }
@@ -99,7 +136,7 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    [WHDataRetrieval setUserToken:@"b7a2ac80-67a7-41bb-a7ff-8e6574b0bdf2"];
+    /*[WHDataRetrieval setUserToken:@"b7a2ac80-67a7-41bb-a7ff-8e6574b0bdf2"];
     [WHDataRetrieval getStorySearch:[WHDataRetrieval userToken] searchString:searchBar.text completetionHandler:
      ^(NSURLResponse *response, NSData *data, NSError *error){
          
@@ -111,20 +148,49 @@
          
      }];
     
-    [searchBar resignFirstResponder];
+    [searchBar resignFirstResponder];*/
 
 }
 
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
-{}
+{
+    /*[WHDataRetrieval setUserToken:@"b7a2ac80-67a7-41bb-a7ff-8e6574b0bdf2"];
+    [WHDataRetrieval getStorySearch:[WHDataRetrieval userToken] searchString:searchBar.text completetionHandler:
+     ^(NSURLResponse *response, NSData *data, NSError *error){
+         
+         _items = [NSObject arrayOfType:[WHStoryObject class] FromJSONData:data];
+         
+         dispatch_async(dispatch_get_main_queue(), ^{
+             [self.tableView reloadData];
+         });
+         
+     }];
+    
+    [searchBar resignFirstResponder];*/
+}
 
 - (void)handleSearch:(UISearchBar *)searchBar
 {
+   /* [WHDataRetrieval setUserToken:@"b7a2ac80-67a7-41bb-a7ff-8e6574b0bdf2"];
+    [WHDataRetrieval getStorySearch:[WHDataRetrieval userToken] searchString:searchBar.text completetionHandler:
+     ^(NSURLResponse *response, NSData *data, NSError *error){
+         
+         _items = [NSObject arrayOfType:[WHStoryObject class] FromJSONData:data];
+         
+         dispatch_async(dispatch_get_main_queue(), ^{
+             [self.tableView reloadData];
+         });
+         
+     }];*/
+    
+    [searchBar resignFirstResponder];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
 {
+    
 }
+
 
 
 /*
@@ -178,7 +244,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    //[tableView deselectRowAtIndexPath:indexPath animated:NO];
     
     WHStoryObject *story = [_items objectAtIndex:[indexPath row]];
     WHStoryViewController *storyVC = [[WHStoryViewController alloc] init];

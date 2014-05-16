@@ -40,7 +40,7 @@
     categoryController.title=@"Search By Category";
     UINavigationController *catNavController = [[UINavigationController alloc] initWithRootViewController:categoryController];
     
-    [_tabBarController setViewControllers:@[searchNavController, recentNavController, catNavController]];
+    [_tabBarController setViewControllers:@[recentNavController, searchNavController, catNavController]];
     
     [self.window setRootViewController:_tabBarController];
     
