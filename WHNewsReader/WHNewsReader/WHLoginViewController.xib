@@ -6,6 +6,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WHLoginViewController">
             <connections>
+                <outlet property="passwordTextField" destination="gfa-ZH-wJG" id="7Jd-yJ-rKw"/>
+                <outlet property="usernameTextField" destination="DpH-KB-XXw" id="zYu-mq-3wp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -45,6 +47,9 @@
                     <state key="normal" title="Login">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="didSelectGo:" destination="-1" eventType="touchUpInside" id="sIK-Pl-ybK"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
