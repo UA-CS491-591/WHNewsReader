@@ -11,6 +11,7 @@
 #import "WHRecentTableViewCell.h"
 #import "WHDataRetrieval.h"
 #import "WHStoryObject.h"
+#import "WHStoryViewController.h"
 
 @interface WHRecentTableViewController ()
 
@@ -97,6 +98,18 @@
          });
          
      }];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //[tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    WHStoryObject *story = [_items objectAtIndex:[indexPath row]];
+    WHStoryViewController *storyVC = [[WHStoryViewController alloc] init];
+    storyVC.selectedStory = story;
+    
+    [self.navigationController pushViewController:storyVC animated:YES];
+    
 }
 
 
