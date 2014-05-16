@@ -91,7 +91,6 @@
      ^(NSURLResponse *response, NSData *data, NSError *error){
          
          _items = [NSObject arrayOfType:[WHStoryObject class] FromJSONData:data];
-         NSLog(@"%@",_items);
          
          dispatch_async(dispatch_get_main_queue(), ^{
              [self.recentStoriesTableView reloadData];
