@@ -26,7 +26,7 @@
 
 +(void)login:(NSString *)username password:(NSString *)password;
 
-+(NSString *) setUserToken:(NSString *)userToken;
++(void) setUserToken:(NSString *)userToken;
 
 +(NSString *) userToken;
 
