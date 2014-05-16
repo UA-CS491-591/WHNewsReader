@@ -10,12 +10,13 @@
 #import "WHRecentObject.h"
 #import "WHRecentTableViewCell.h"
 #import "WHDataRetrieval.h"
+#import "WHStoryObject.h"
 
 @interface WHRecentTableViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *recentStoriesTableView;
 @property NSMutableArray *recentItems;
-
+@property NSArray *items;
 @end
 
 @implementation WHRecentTableViewController
@@ -38,7 +39,7 @@
     [super viewDidLoad];
     _recentItems = [[NSMutableArray alloc] init];
     //[self loadTestData];
-    [self makeRequest];
+    [self populateInitialData];
     
 }
 
@@ -59,7 +60,8 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.recentItems count];
+    //return [self.recentItems count];
+    return [self.items count];
 }
 
 
@@ -73,42 +75,29 @@
     }
     
     // Configure the cell...
-    WHRecentObject *item = [self.recentItems objectAtIndex:indexPath.row];
-    cell.itemNameLabel.text = item.name;
+    //WHRecentObject *item = [self.recentItems objectAtIndex:indexPath.row];
+    WHStoryObject *item = [self.items objectAtIndex:indexPath.row];
+    cell.itemNameLabel.text = [item title];
     return cell;
 }
 
--(void)makeRequest
+-(void)populateInitialData
 {
-    NSString *userToken = @"b7a2ac80-67a7-41bb-a7ff-8e6574b0bdf2";;
-    
-    [WHDataRetrieval getStoryRecent:userToken completetionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        NSString *responseString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-        //NSLog(@"%@",responseString);
-        
-        NSArray *array = [responseString componentsSeparatedByString:@","];
-        //NSLog(@"%@",test);
-        
-        for(NSString *title in array)
-        {
-            if([title rangeOfString:@"\"title\":"].location != NSNotFound)
-            {
-                WHRecentObject *item = [[WHRecentObject alloc] init];
-                item.name = title;
-                [_recentItems addObject:item];
-                //NSLog(@"%@",title);
-                NSLog(@"%@",self.recentItems);
-                
-            }
-        }
-        
-    }];
-    //NSLog(@"%@",self.recentItems);
+    [WHDataRetrieval setUserToken:@"b7a2ac80-67a7-41bb-a7ff-8e6574b0bdf2"];
+    [WHDataRetrieval getStoryRecent:[WHDataRetrieval userToken] completetionHandler:
+     ^(NSURLResponse *response, NSData *data, NSError *error){
+         
+         _items = [NSObject arrayOfType:[WHStoryObject class] FromJSONData:data];
+         NSLog(@"%@",_items);
+         
+         dispatch_async(dispatch_get_main_queue(), ^{
+             //[self.tableView reloadData];
+             [self.recentStoriesTableView reloadData];
+             
+         });
+         
+     }];
 }
-
-
-
-
 
 
 @end
