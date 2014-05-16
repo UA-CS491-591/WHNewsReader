@@ -7,13 +7,17 @@
 //
 
 #import "WHLoginViewController.h"
-#import "WHLoginView.h"
+#import "WHUserObject.h"
+#import "WHLoginObject.h"
+#import "WHDataRetrieval.h"
 
 @interface WHLoginViewController ()
-@property WHLoginView *loginView;
-@property NSString *username;
-@property NSString *password;
+@property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property NSOperationQueue *operationQueue;
+
+@property WHUserObject *userData;
+@property WHLoginObject *loginData;
 @end
 
 @implementation WHLoginViewController
@@ -25,8 +29,6 @@
     if (self) {
         // Custom initialization
     }
-    _loginView = [[WHLoginView alloc] init];
-    [self.view addSubview:_loginView];
     return self;
 }
 
@@ -35,6 +37,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     _operationQueue = [[NSOperationQueue alloc] init];
+    _userData = [[WHUserObject alloc] init];
+    _loginData = [[WHLoginObject alloc] init];
 }
 
 - (void)didReceiveMemoryWarning
@@ -74,9 +78,9 @@
     [request setHTTPMethod:@"POST"];
     
     //Specify the string to get sent to the server
-    _username = [_loginView getUsername];
-    _password = [_loginView getPassword];
-    NSString *loginString = [NSString stringWithFormat:@"{\"username\": \"%@\",\"password\": \"%@\"}" ,_username, _password];
+    NSString *username = _usernameTextField.text;
+    NSString *password = _passwordTextField.text;
+    NSString *loginString = [NSString stringWithFormat:@"{\"username\": \"%@\",\"password\": \"%@\"}" ,username, password];
     //NSString *loginString = @"{\"username\": \"zbarnes\",\"password\": \"password\"}";
     //Make that string into raw data
     NSData *loginData = [loginString dataUsingEncoding:NSUTF8StringEncoding];
@@ -90,6 +94,23 @@
         //Log out response
         NSLog(@"%@", responseString);
     }];
+}
+
+- (void) parseJSONtoObjects:(NSData *)responseData
+{
+    if(responseData == nil)
+        return;
+    NSError *error;
+    NSMutableDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:&error];
+    NSLog([dataDictionary objectForKey:@"accessToken"]);
+    NSLog([dataDictionary objectForKey:@"Id"]);
+    NSLog([dataDictionary objectForKey:@"firstName"]);
+    NSLog([dataDictionary objectForKey:@"lastName"]);
+    NSLog([dataDictionary objectForKey:@"username"]);
+    NSLog([dataDictionary objectForKey:@"email"]);
+    NSLog([dataDictionary objectForKey:@"position"]);
+    NSLog([dataDictionary objectForKey:@"isWriter"]);
+    NSLog([dataDictionary objectForKey:@"imageUrl"]);
 }
 
 
