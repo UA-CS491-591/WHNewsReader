@@ -18,7 +18,7 @@
 
 @implementation WHCategoryTableViewController
 
--(instancetype)init{
+-(instancetype)initWithCats{
     
     if (self) {
         
@@ -27,28 +27,48 @@
         
         self.title = @"Search By Category";
         _categories = [NSMutableArray array];
-        
+        [self loadCategories];
     }
     
     
     return self;
 }
 
-//-(NSMutableArray *)checkArray{
-    //if(self.categories==nil){
-     //   [self loadCategories];
-    //}
-    //return self.categories;
-//}
+-(instancetype)initWithStories:(NSString *)catName{
+    if (self) {
+        
+        self.tabBarItem.image=[UIImage imageNamed:@"archive-32.png"];
+        self.title=[[NSString alloc] initWithFormat:@"Stories in %@ Category",catName];
+        _categories = [NSMutableArray array];
+        [self loadStories];
+    }
+    
+    
+    return self;
+}
+
+-(NSMutableArray *)checkArray{
+    if(self.categories.count==0){
+        [self loadCategories];
+    }
+    return self.categories;
+}
 
 -(void)loadCategories{
+    [_categories addObject:@"Test1"];
+    [_categories addObject:@"Test2"];
+    [_categories addObject:@"Testing the bounds"];
+}
+-(void)loadStories{
+    [_categories addObject:@"Story1"];
+    [_categories addObject:@"Story2"];
+    [_categories addObject:@"Testing the bounds"];
     
 }
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [_categories addObject:@"Test1"];
-    [_categories addObject:@"Test2"];
+    
     
     
     // Uncomment the following line to preserve selection between presentations.
@@ -82,13 +102,13 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{   WHCategoryTableViewCell *cell = [[WHCategoryTableViewCell alloc] init];
+{   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CategoryTableCell"];
     
     if(!cell){
-        cell=[[WHCategoryTableViewCell alloc] init];
+        cell=[[UITableViewCell alloc] init];
         
     }
-    cell.itemNameLabel.text=_categories[indexPath.row];
+    cell.textLabel.text=_categories[indexPath.row];
     
     
     
@@ -135,7 +155,7 @@
 }
 */
 
-/*
+
 #pragma mark - Table view delegate
 
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
@@ -143,13 +163,14 @@
 {
     // Navigation logic may go here, for example:
     // Create the next view controller.
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
+    UITableViewCell *workingCell = [tableView cellForRowAtIndexPath:indexPath];
+    WHCategoryTableViewController *detailViewController = [[WHCategoryTableViewController alloc] initWithStories:workingCell.textLabel.text];
     
     // Pass the selected object to the new view controller.
     
     // Push the view controller.
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
-*/
+
 
 @end

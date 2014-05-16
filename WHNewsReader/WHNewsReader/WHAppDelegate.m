@@ -36,7 +36,7 @@
     recentController.tabBarItem.image = [UIImage imageNamed:@"recent-25.png"];
     UINavigationController *recentNavController = [[UINavigationController alloc] initWithRootViewController:recentController];
     
-    WHCategoryTableViewController *categoryController =[[WHCategoryTableViewController alloc] init];
+    WHCategoryTableViewController *categoryController =[[WHCategoryTableViewController alloc] initWithCats];
     categoryController.title=@"Search By Category";
     UINavigationController *catNavController = [[UINavigationController alloc] initWithRootViewController:categoryController];
     
