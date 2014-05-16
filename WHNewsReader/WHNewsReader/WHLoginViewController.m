@@ -80,8 +80,7 @@
     //Specify the string to get sent to the server
     NSString *username = _usernameTextField.text;
     NSString *password = _passwordTextField.text;
-    NSString *loginString = [NSString stringWithFormat:@"{\"username\": \"%@\",\"password\": \"%@\"}" ,username, password];
-    //NSString *loginString = @"{\"username\": \"zbarnes\",\"password\": \"password\"}";
+    NSString *loginString = [NSString stringWithFormat:@"{\"username\": \"%@\",\"password\": \"%@\"}" , username, password];
     //Make that string into raw data
     NSData *loginData = [loginString dataUsingEncoding:NSUTF8StringEncoding];
     //Set raw data as the HTTP Body
@@ -93,24 +92,37 @@
         NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         //Log out response
         NSLog(@"%@", responseString);
+        [self parseJSONtoObjects:loginData];
     }];
 }
 
-- (void) parseJSONtoObjects:(NSData *)responseData
+- (void)parseJSONtoObjects:(NSData *)responseData
 {
     if(responseData == nil)
         return;
     NSError *error;
     NSMutableDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:&error];
-    NSLog([dataDictionary objectForKey:@"accessToken"]);
-    NSLog([dataDictionary objectForKey:@"Id"]);
-    NSLog([dataDictionary objectForKey:@"firstName"]);
-    NSLog([dataDictionary objectForKey:@"lastName"]);
-    NSLog([dataDictionary objectForKey:@"username"]);
-    NSLog([dataDictionary objectForKey:@"email"]);
-    NSLog([dataDictionary objectForKey:@"position"]);
-    NSLog([dataDictionary objectForKey:@"isWriter"]);
-    NSLog([dataDictionary objectForKey:@"imageUrl"]);
+    NSDictionary *userDictionary = [dataDictionary objectForKey:@"user"];
+    _loginData.accessToken = [dataDictionary objectForKey:@"accessToken"];
+    _userData.Id = [userDictionary objectForKey:@"Id"];
+    _userData.firstName = [userDictionary objectForKey:@"firstName"];
+    _userData.lastName = [userDictionary objectForKey:@"lastName"];
+    _userData.username = [userDictionary objectForKey:@"username"];
+    _userData.email = [userDictionary objectForKey:@"email"];
+    _userData.position = [userDictionary objectForKey:@"position"];
+    _userData.isWriter = [userDictionary objectForKey:@"isWriter"];
+    _userData.imageUrl = [userDictionary objectForKey:@"imageURL"];
+    _loginData.user = _userData;
+    
+    //NSLog([dataDictionary objectForKey:@"accessToken"]);
+   //NSLog([userDictionary objectForKey:@"Id"]);
+   //NSLog([userDictionary objectForKey:@"firstName"]);
+    //NSLog([userDictionary objectForKey:@"lastName"]);
+    //NSLog([userDictionary objectForKey:@"username"]);
+    //NSLog([userDictionary objectForKey:@"email"]);
+    //NSLog([userDictionary objectForKey:@"position"]);
+    //NSLog([userDictionary objectForKey:@"isWriter"]);
+    //NSLog([userDictionary objectForKey:@"imageUrl"]);
 }
 
 
