@@ -8,7 +8,6 @@
 
 #import "WHRecentTableViewController.h"
 #import "WHRecentObject.h"
-#import "WHRecentTableViewCell.h"
 #import "WHDataRetrieval.h"
 #import "WHStoryObject.h"
 #import "WHStoryViewController.h"
@@ -22,24 +21,11 @@
 
 @implementation WHRecentTableViewController
 
--(void)loadTestData
-{
-    WHRecentObject *item1 = [[WHRecentObject alloc] init];
-    item1.name = @"Story 1";
-    [_recentItems addObject:item1];
-    WHRecentObject *item2 = [[WHRecentObject alloc] init];
-    item2.name = @"Story 2";
-    [_recentItems addObject:item2];
-    WHRecentObject *item3 = [[WHRecentObject alloc] init];
-    item3.name = @"Story 3";
-    [_recentItems addObject:item3];
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     _recentItems = [[NSMutableArray alloc] init];
-    //[self loadTestData];
     [self populateInitialData];
     
 }
@@ -61,24 +47,40 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    //return [self.recentItems count];
     return [self.items count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //static NSString *CellIdentifier = @"WHRecentTableViewCell";
-    WHRecentTableViewCell *cell = [[WHRecentTableViewCell alloc] init];
-    if(!cell)
-    {
-       
-    }
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, [tableView bounds].size.width, [tableView bounds].size.height)];
     
-    // Configure the cell...
-    //WHRecentObject *item = [self.recentItems objectAtIndex:indexPath.row];
-    WHStoryObject *item = [self.items objectAtIndex:indexPath.row];
-    cell.itemNameLabel.text = [item title];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    WHStoryObject *story = [_items objectAtIndex:indexPath.row];
+    //cell.textLabel.text = [story title];
+    
+    UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [tableView bounds].size.width, 20)];
+    
+    [cell addSubview:customView];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(42,2,[tableView bounds].size.width - 70, 30)];
+    titleLabel.text = story.title;
+    UILabel *subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(52, 22, [tableView bounds].size.width - 80, 20)];
+    
+    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:story.imageUrl]]];
+    
+    titleLabel.font = [titleLabel.font fontWithSize:20];
+    subTitleLabel.font = [subTitleLabel.font fontWithSize:12];
+    
+    subTitleLabel.text = story.subtitle;
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    
+    imageView.frame = CGRectMake(2,2,40,40);
+    
+    [customView addSubview:titleLabel];
+    [customView addSubview:subTitleLabel];
+    [customView addSubview:imageView];
     return cell;
 }
 
@@ -92,7 +94,6 @@
          NSLog(@"%@",_items);
          
          dispatch_async(dispatch_get_main_queue(), ^{
-             //[self.tableView reloadData];
              [self.recentStoriesTableView reloadData];
              
          });
