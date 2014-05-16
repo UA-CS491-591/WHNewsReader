@@ -57,10 +57,6 @@
     */
     
     [self populateInitialData];
-    
-    
-    
-    
 }
 
 -(void)populateInitialData
@@ -74,7 +70,6 @@
          dispatch_async(dispatch_get_main_queue(), ^{
              [self.tableView reloadData];
          });
-         
      }];
 }
 
@@ -126,10 +121,29 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     WHStoryObject *story = [_items objectAtIndex:indexPath.row];
-    cell.textLabel.text = [story title];
+    //cell.textLabel.text = [story title];
     
+    UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [tableView bounds].size.width, 20)];
     
+    [cell addSubview:customView];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(42,2,[tableView bounds].size.width - 70, 30)];
+    titleLabel.text = story.title;
+    UILabel *subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(52, 22, [tableView bounds].size.width - 80, 20)];
     
+    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:story.imageUrl]]];
+    
+    titleLabel.font = [titleLabel.font fontWithSize:20];
+    subTitleLabel.font = [subTitleLabel.font fontWithSize:12];
+    
+    subTitleLabel.text = story.subtitle;
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    
+    imageView.frame = CGRectMake(2,2,40,40);
+    
+    [customView addSubview:titleLabel];
+    [customView addSubview:subTitleLabel];
+    [customView addSubview:imageView];
     return cell;
 }
 
