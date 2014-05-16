@@ -49,7 +49,7 @@
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
     _storyDate.text = [dateFormatter stringFromDate:story.datePublished];
-    _storyImage.image = [NSURL URLWithString:story.imageUrl];
+    _storyImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:story.imageUrl]]];
     
     [_navImageButton addTarget:self action:@selector(didTapMyButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_navImage];

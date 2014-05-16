@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -11,8 +11,6 @@
                 <outlet property="authorMiniView" destination="FDD-6E-ooP" id="CNz-NJ-mPU"/>
                 <outlet property="authorName" destination="chF-hB-XWR" id="Gt9-5w-Iaw"/>
                 <outlet property="authorPosition" destination="iqX-jV-nuO" id="fPt-G6-Ax6"/>
-                <outlet property="navImage" destination="MbX-oC-YF8" id="FBD-ro-CBb"/>
-                <outlet property="navImageButton" destination="w5i-D1-wr6" id="OGe-7J-FR1"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
