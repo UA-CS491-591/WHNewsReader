@@ -2,7 +2,7 @@
 //  WHRecentTableViewCell.m
 //  WHNewsReader
 //
-//  Created by Student on 5/14/14.
+//  Created by Ryan Hill on 5/14/14.
 //
 //
 

@@ -2,7 +2,7 @@
 //  WHRecentTableViewController.m
 //  WHNewsReader
 //
-//  Created by Student on 5/14/14.
+//  Created by Ryan Hill on 5/14/14.
 //
 //
 
@@ -102,8 +102,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //[tableView deselectRowAtIndexPath:indexPath animated:NO];
-    
     WHStoryObject *story = [_items objectAtIndex:[indexPath row]];
     WHStoryViewController *storyVC = [[WHStoryViewController alloc] init];
     storyVC.selectedStory = story;
