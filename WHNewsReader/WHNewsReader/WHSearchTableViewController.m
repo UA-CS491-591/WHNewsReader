@@ -181,9 +181,9 @@
              [self.tableView reloadData];
          });
          
-     }];
+     }];*/
     
-    [searchBar resignFirstResponder];*/
+    [searchBar resignFirstResponder];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
