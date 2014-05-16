@@ -109,7 +109,7 @@
         
     }
     cell.textLabel.text=_categories[indexPath.row];
-    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     
     
