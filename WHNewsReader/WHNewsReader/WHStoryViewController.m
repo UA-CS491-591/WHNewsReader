@@ -94,6 +94,8 @@
 
 #import "WHStoryViewController.h"
 #import "WHAuthorObject.h"
+#import "WHDataRetrieval.h"
+#import "NSObject+ObjectMap.h"
 
 @interface WHStoryViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *storyBody;
@@ -125,20 +127,38 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    WHStoryObject *story = _selectedStory;
-    _storyTitle.text = story.title;
-    _storySubtitle.text = story.subtitle;
-    _storyBody.text = story.body;
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-    [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
-    _storyDate.text = [dateFormatter stringFromDate:story.datePublished];
-    _storyImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:story.imageUrl]]];
-    
-    WHAuthorObject *author = [[WHAuthorObject alloc] init];
-    _authorMiniImage.image = [NSURL URLWithString:author.imageUrl];
-    _authorName.text = [NSString stringWithFormat:@"%@ %@", author.firstName, author.lastName]  ;
-    _authorPosition.text = author.position;
+    [WHDataRetrieval setUserToken:@"b7a2ac80-67a7-41bb-a7ff-8e6574b0bdf2"];
+    [WHDataRetrieval getStoryById:_selectedStory.storyId userToken:[WHDataRetrieval userToken] completetionHandler:
+     ^(NSURLResponse *response, NSData *data, NSError *error){
+         
+//         _items = [NSObject arrayOfType:[WHStoryObject class] FromJSONData:data];
+         _selectedStory = [[WHStoryObject alloc] initWithJSONData:data];
+         
+         
+         dispatch_async(dispatch_get_main_queue(), ^{
+             WHStoryObject *story = _selectedStory;
+             _storyTitle.text = story.title;
+             _storySubtitle.text = story.subtitle;
+             _storyBody.text = story.body;
+             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+             
+             [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+             [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+             _storyDate.text = [dateFormatter stringFromDate:story.datePublished];
+             _storyImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:story.imageUrl]]];
+             
+             WHAuthorObject *author = [[WHAuthorObject alloc] init];
+             _authorMiniImage.image = [NSURL URLWithString:author.imageUrl];
+             _authorName.text = [NSString stringWithFormat:@"%@ %@", author.firstName, author.lastName]  ;
+             _authorPosition.text = author.position;
+             
+             
+             
+             
+         });
+         
+     }];
+  
     
 }
 

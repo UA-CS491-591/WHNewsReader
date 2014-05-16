@@ -12,7 +12,7 @@
 #import "NSObject+ObjectMap.h"
 
 @interface WHStoryObject : NSObject
-
+@property NSString *storyId;
 @property NSString *title;
 @property NSString *subtitle;
 @property NSString *body;
