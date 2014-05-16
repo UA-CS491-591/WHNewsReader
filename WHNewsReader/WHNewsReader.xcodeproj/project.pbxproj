@@ -59,6 +59,7 @@
 		3FB1B17B19251A6B008777F9 /* WHLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FB1B17919251A6B008777F9 /* WHLoginView.xib */; };
 		8FBE84B6192521CC0019AC09 /* WHLoginObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FBE84B5192521CC0019AC09 /* WHLoginObject.m */; };
 		8FBE84B9192522370019AC09 /* WHUserObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FBE84B8192522370019AC09 /* WHUserObject.m */; };
+		D8CF144A1926604D0043973E /* location-25.png in Resources */ = {isa = PBXBuildFile; fileRef = D8CF14491926604D0043973E /* location-25.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,6 +146,7 @@
 		8FBE84B5192521CC0019AC09 /* WHLoginObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHLoginObject.m; sourceTree = "<group>"; };
 		8FBE84B7192522370019AC09 /* WHUserObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHUserObject.h; sourceTree = "<group>"; };
 		8FBE84B8192522370019AC09 /* WHUserObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHUserObject.m; sourceTree = "<group>"; };
+		D8CF14491926604D0043973E /* location-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "location-25.png"; path = "../../../../../Downloads/location/location-25.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -262,6 +264,7 @@
 			children = (
 				3FB1B13B1925195A008777F9 /* Splash screens */,
 				3F37F2871925234600565442 /* recent-25.png */,
+				D8CF14491926604D0043973E /* location-25.png */,
 				3FB1B12E1925191F008777F9 /* search-25.png */,
 				3FB1B11B1925190B008777F9 /* Icons */,
 			);
@@ -525,6 +528,7 @@
 				3FA50A4519254A2B009367A4 /* WHCategoryTableViewCell.xib in Resources */,
 				3FB1B15F192519C4008777F9 /* WHLoginViewController.xib in Resources */,
 				3FB1B17B19251A6B008777F9 /* WHLoginView.xib in Resources */,
+				D8CF144A1926604D0043973E /* location-25.png in Resources */,
 				3F37F2881925234600565442 /* recent-25.png in Resources */,
 				3FB1B13919251957008777F9 /* SplashScreen3-04.png in Resources */,
 				3FB1B12819251916008777F9 /* icononly copy40.png in Resources */,

@@ -20,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *authorPosition;
 @property (weak, nonatomic) IBOutlet UIButton *authorInfo;
 @property (weak, nonatomic) IBOutlet UILabel *storyDate;
+@property (weak, nonatomic) IBOutlet UIImageView *navImage;
+@property (weak, nonatomic) IBOutlet UIButton *navImageButton;
 
 
 @end
@@ -49,8 +51,12 @@
     _storyDate.text = [dateFormatter stringFromDate:story.datePublished];
     _storyImage.image = [NSURL URLWithString:story.imageUrl];
     
-
+    [_navImageButton addTarget:self action:@selector(didTapMyButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_navImage];
+    [self.view addSubview:_navImageButton];
     
+
+
 
     
     WHAuthorObject *author = [[WHAuthorObject alloc] init];
@@ -64,6 +70,17 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)didTapMyButton:(UIButton *)sender{
+//    [sender setTitle:@"Did Tap Button" forState:UIControlStateNormal];
+//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://www.github.com/carolinegodwin"]];
+
+//Create alert
+       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Story Location" message:@"My Message" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+    //    //Show Alert
+        [alert show];
+    
 }
 
 @end
