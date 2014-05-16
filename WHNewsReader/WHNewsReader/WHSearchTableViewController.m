@@ -10,6 +10,7 @@
 #import "WHDataRetrieval.h"
 #import "NSObject+ObjectMap.h"
 #import "WHStoryObject.h"
+#import "WHStoryViewController.h"
 
 @interface WHSearchTableViewController ()
 
@@ -85,10 +86,12 @@
 {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, [tableView bounds].size.width, [tableView bounds].size.height)];
     
-
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
-    cell.textLabel.text = [_items objectAtIndex:indexPath.row];
+    //int temp = [indexPath row];
+    
+    WHStoryObject *story = [_items objectAtIndex:indexPath.row];
+    cell.textLabel.text = [story title];
     
     return cell;
 }
@@ -96,19 +99,14 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-        
-    
-    
-    
-    
-    
+    [WHDataRetrieval setUserToken:@"b7a2ac80-67a7-41bb-a7ff-8e6574b0bdf2"];
     [WHDataRetrieval getStorySearch:[WHDataRetrieval userToken] searchString:searchBar.text completetionHandler:
      ^(NSURLResponse *response, NSData *data, NSError *error){
          
          _items = [NSObject arrayOfType:[WHStoryObject class] FromJSONData:data];
          
          dispatch_async(dispatch_get_main_queue(), ^{
-             //[_searchTableView reloadData];
+             [self.tableView reloadData];
          });
          
      }];
@@ -177,5 +175,17 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    WHStoryObject *story = [_items objectAtIndex:[indexPath row]];
+    WHStoryViewController *storyVC = [[WHStoryViewController alloc] init];
+    storyVC.selectedStory = story;
+    
+    [self.navigationController pushViewController:storyVC animated:YES];
+    
+}
 
 @end
