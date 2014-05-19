@@ -7,12 +7,16 @@
 //
 
 #import "WHCategoryTableViewController.h"
-#import "WHRecentTableViewCell.h"
+
 
 
 @interface WHCategoryTableViewController ()
-@property NSMutableArray *categories;
--(NSMutableArray *)checkArray;
+@property NSArray *categories;
+@property NSArray *items;
+@property NSString *catName;
+@property NSString *catId;
+@property int typeFlag;//0=init with categories, 1=init with stories
+
 -(void)loadCategories;
 @end
 
@@ -21,12 +25,13 @@
 -(instancetype)initWithCats{
     
     if (self) {
+        self.typeFlag=0;
         
         self.tabBarItem.title=@"Search By Category";
         self.tabBarItem.image=[UIImage imageNamed:@"archive-32.png"];
         
         self.title = @"Search By Category";
-        _categories = [NSMutableArray array];
+        _categories = [NSArray array];
         [self loadCategories];
     }
     
@@ -34,12 +39,16 @@
     return self;
 }
 
--(instancetype)initWithStories:(NSString *)catName{
+-(instancetype)initWithStories:(WHCategoryObject *)cat{
+    
     if (self) {
-        
+        self.catName=cat.name;
+        self.catId=cat.categoryId;
+        self.typeFlag=1;
         self.tabBarItem.image=[UIImage imageNamed:@"archive-32.png"];
-        self.title=[[NSString alloc] initWithFormat:@"Stories in %@ Category",catName];
-        _categories = [NSMutableArray array];
+        self.title=[[NSString alloc] initWithFormat:@"%@ Stories",self.catName];
+        _items = [NSArray array];
+        self.tableView.rowHeight=44;
         [self loadStories];
     }
     
@@ -47,22 +56,41 @@
     return self;
 }
 
--(NSMutableArray *)checkArray{
-    if(self.categories.count==0){
-        [self loadCategories];
-    }
-    return self.categories;
-}
-
 -(void)loadCategories{
-    [_categories addObject:@"Test1"];
-    [_categories addObject:@"Test2"];
-    [_categories addObject:@"Testing the bounds"];
+    
+    [WHDataRetrieval setUserToken:@"b7a2ac80-67a7-41bb-a7ff-8e6574b0bdf2"];
+    [WHDataRetrieval getCategories:[WHDataRetrieval userToken] completetionHandler:
+      ^(NSURLResponse *response, NSData *data, NSError *error){
+     
+         _categories = [NSObject arrayOfType:[WHCategoryObject class] FromJSONData:data];
+          NSArray *sortedArray;
+          sortedArray = [self.categories sortedArrayUsingComparator:^NSComparisonResult(WHCategoryObject *story1, WHCategoryObject *story2) {
+              return [story1.name compare: story2.name];
+          }];
+          _categories=sortedArray;
+         dispatch_async(dispatch_get_main_queue(), ^{
+         [self.tableView reloadData];
+        });
+     
+     }];
+    
+    
+    
+    
 }
 -(void)loadStories{
-    [_categories addObject:@"Story1"];
-    [_categories addObject:@"Story2"];
-    [_categories addObject:@"Testing the bounds"];
+    [WHDataRetrieval setUserToken:@"b7a2ac80-67a7-41bb-a7ff-8e6574b0bdf2"];
+    [WHDataRetrieval getStoryByCategory:self.catId userToken:[WHDataRetrieval userToken] completetionHandler:
+     ^(NSURLResponse *response, NSData *data, NSError *error){
+         
+         _items = [NSObject arrayOfType:[WHStoryObject class] FromJSONData:data];
+         
+         
+         dispatch_async(dispatch_get_main_queue(), ^{
+             [self.tableView reloadData];
+         });
+         
+     }];
     
 }
 - (void)viewDidLoad
@@ -97,23 +125,65 @@
 {
 
     // Return the number of rows in the section.
-    return _categories.count;
+    if(self.typeFlag==0){
+        return _categories.count;
+    }
+    else{
+        return _items.count;
+    }
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CategoryTableCell"];
-    
+{   WHCategoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CategoryTableCell"];
+    if(self.typeFlag==0){
     if(!cell){
-        cell=[[UITableViewCell alloc] init];
+        cell=[[WHCategoryTableViewCell alloc] init];
         
     }
-    cell.textLabel.text=_categories[indexPath.row];
+    WHCategoryObject *cat=[self.categories objectAtIndex:indexPath.row];
+        
+    cell.itemNameLabel.text=cat.name;
+    cell.catDescription.text=cat.description;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+    
     
     
     
     return cell;
+    }
+    else{
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, [tableView bounds].size.width, [tableView bounds].size.height)];
+        
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+        WHStoryObject *story = [_items objectAtIndex:indexPath.row];
+        //cell.textLabel.text = [story title];
+        
+        UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [tableView bounds].size.width, 20)];
+        
+        [cell addSubview:customView];
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(42,2,[tableView bounds].size.width - 70, 30)];
+        titleLabel.text = story.title;
+        UILabel *subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(52, 22, [tableView bounds].size.width - 80, 20)];
+        
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:story.imageUrl]]];
+        
+        titleLabel.font = [titleLabel.font fontWithSize:20];
+        subTitleLabel.font = [subTitleLabel.font fontWithSize:12];
+        
+        subTitleLabel.text = story.subtitle;
+        
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        
+        imageView.frame = CGRectMake(2,2,40,40);
+        
+        [customView addSubview:titleLabel];
+        [customView addSubview:subTitleLabel];
+        [customView addSubview:imageView];
+        return cell;
+    }
 }
 
 
@@ -161,15 +231,24 @@
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here, for example:
-    // Create the next view controller.
-    UITableViewCell *workingCell = [tableView cellForRowAtIndexPath:indexPath];
-    WHCategoryTableViewController *detailViewController = [[WHCategoryTableViewController alloc] initWithStories:workingCell.textLabel.text];
+    if(self.typeFlag==0){
+        // Navigation logic may go here, for example:
+        // Create the next view controller.
+        WHCategoryObject *cat=[self.categories objectAtIndex:indexPath.row];
+        WHCategoryTableViewController *detailViewController = [[WHCategoryTableViewController alloc] initWithStories:cat];
     
-    // Pass the selected object to the new view controller.
+        // Pass the selected object to the new view controller.
     
-    // Push the view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
+        // Push the view controller.
+        [self.navigationController pushViewController:detailViewController animated:YES];
+    }
+    else{
+        WHStoryObject *story = [_items objectAtIndex:[indexPath row]];
+        WHStoryViewController *storyVC = [[WHStoryViewController alloc] init];
+        storyVC.selectedStory = story;
+        
+        [self.navigationController pushViewController:storyVC animated:YES];
+    }
 }
 
 
