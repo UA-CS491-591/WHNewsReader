@@ -67,7 +67,7 @@
 {
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     
-    UINavigationController *loginNav = [[[UINavigationController alloc] init];
+    UINavigationController *loginNav = [[UINavigationController alloc] init];
                                         
     WHSearchTableViewController *searchController = [[WHSearchTableViewController alloc] init];
     searchController.title = @"Search Stories";
