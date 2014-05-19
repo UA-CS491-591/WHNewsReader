@@ -12,6 +12,7 @@
 #import "WHSearchTableViewController.h"
 #import "WHCategoryTableViewController.h"
 #import "WHRecentTableViewController.h"
+#import "WHLoginViewController.h"
 
 
 @implementation WHAppDelegate
@@ -24,25 +25,32 @@
     [self.window makeKeyAndVisible];
     
     _tabBarController = [[UITabBarController alloc] init];
-
     
+    WHLoginViewController *loginController = [[WHLoginViewController alloc] init];
+    loginController.title = @"Login";
+    UINavigationController *loginNavController = [[UINavigationController alloc] initWithRootViewController:loginController];
+    [self.window setRootViewController:loginNavController];
+
     WHSearchTableViewController *searchController = [[WHSearchTableViewController alloc] init];
     searchController.title = @"Search Stories";
     UINavigationController *searchNavController = [[UINavigationController alloc] initWithRootViewController:searchController];
-    
-    
+        
+        
     WHRecentTableViewController *recentController = [[WHRecentTableViewController alloc] init];
     recentController.title = @"Recent Stories";
     recentController.tabBarItem.image = [UIImage imageNamed:@"recent-25.png"];
     UINavigationController *recentNavController = [[UINavigationController alloc] initWithRootViewController:recentController];
-    
+        
     WHCategoryTableViewController *categoryController =[[WHCategoryTableViewController alloc] initWithCats];
     categoryController.title=@"Search By Category";
     UINavigationController *catNavController = [[UINavigationController alloc] initWithRootViewController:categoryController];
-    
+        
     [_tabBarController setViewControllers:@[recentNavController, searchNavController, catNavController]];
+        
+    [loginNavController pushViewController:_tabBarController animated:YES];
+        
+    //[self.window setRootViewController:_tabBarController];
     
-    [self.window setRootViewController:_tabBarController];
     
     return YES;
 }

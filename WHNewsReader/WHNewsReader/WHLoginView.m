@@ -13,23 +13,14 @@
 
 - (id)initWithFrame:(CGRect)frame
 {
-    //self = [super initWithFrame:frame];
-    self = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([WHLoginView class]) owner:nil options:nil][0];
+    self = [super initWithFrame:frame];
+    //self = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([WHLoginView class]) owner:nil options:nil][0];
     if (self) {
         // Initialization code
     }
     return self;
 }
 
-- (NSString *)getUsername
-{
-    return self.userNameTextfield.text;
-}
-
-- (NSString *)getPassword
-{
-    return self.passwordTextfield.text;
-}
 
 //- (id)initWithFrame:(CGRect)frame login:(WHLogin *)login
 //{

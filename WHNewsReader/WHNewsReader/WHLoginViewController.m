@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property NSOperationQueue *operationQueue;
-
+@property BOOL isSuccessful;
 @property WHUserObject *userData;
 @property WHLoginObject *loginData;
 @end
@@ -24,7 +24,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithNibName:@"WHLoginViewController" bundle:nil];
     //self = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([WHLoginView class]) owner:nil options:nil][0];
     if (self) {
         // Custom initialization
@@ -36,6 +36,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    _isSuccessful = NO;
     _operationQueue = [[NSOperationQueue alloc] init];
     _userData = [[WHUserObject alloc] init];
     _loginData = [[WHLoginObject alloc] init];
@@ -51,6 +52,11 @@
 {
     [self.view endEditing:YES];
     [self makeRequest];
+    if(self.isLoginSuccessful == YES)
+    {
+        
+    }
+    
 }
 
 - (BOOL) textFieldShouldReturn:(UITextField *)textField
@@ -63,6 +69,14 @@
 - (void)makeRequest
 {
     [self login];
+}
+
+-(BOOL) isLoginSuccessful
+{
+    if(_isSuccessful == YES)
+        return YES;
+    else
+        return NO;
 }
 
 - (void)login
@@ -92,7 +106,10 @@
         NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         //Log out response
         NSLog(@"%@", responseString);
-        [self parseJSONtoObjects:loginData];
+        _isSuccessful = YES;
+        
+        //[self parseJSONtoObjects:loginData];
+        
     }];
 }
 

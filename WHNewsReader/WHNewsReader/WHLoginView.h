@@ -9,11 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface WHLoginView : UIView
-@property (weak, nonatomic) IBOutlet UITextField *userNameTextfield;
-@property (weak, nonatomic) IBOutlet UITextField *passwordTextfield;
 
-//- (id)initWithFrame:(CGRect)frame login:(WHLogin *)login;
-- (NSString *)getUsername;
-- (NSString *)getPassword;
 
 @end

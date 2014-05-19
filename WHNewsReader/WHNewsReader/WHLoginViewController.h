@@ -10,4 +10,6 @@
 
 @interface WHLoginViewController : UIViewController
 
+-(BOOL) isLoginSuccessful;
+
 @end
