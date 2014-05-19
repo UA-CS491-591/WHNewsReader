@@ -10,6 +10,9 @@
 #import "WHUserObject.h"
 #import "WHLoginObject.h"
 #import "WHDataRetrieval.h"
+#import "WHRecentTableViewController.h"
+#import "WHSearchTableViewController.h"
+#import "WHCategoryTableViewController.h"
 
 @interface WHLoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
@@ -54,8 +57,34 @@
     [self makeRequest];
     if(self.isLoginSuccessful == YES)
     {
+        //[self createTabBar];
         
     }
+    
+}
+
+-(void) createTabBar
+{
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    
+    UINavigationController *loginNav = [[[UINavigationController alloc] init];
+                                        
+    WHSearchTableViewController *searchController = [[WHSearchTableViewController alloc] init];
+    searchController.title = @"Search Stories";
+    UINavigationController *searchNavController = [[UINavigationController alloc] initWithRootViewController:searchController];
+    
+    
+    WHRecentTableViewController *recentController = [[WHRecentTableViewController alloc] init];
+    recentController.title = @"Recent Stories";
+    recentController.tabBarItem.image = [UIImage imageNamed:@"recent-25.png"];
+    UINavigationController *recentNavController = [[UINavigationController alloc] initWithRootViewController:recentController];
+    
+    WHCategoryTableViewController *categoryController =[[WHCategoryTableViewController alloc] initWithCats];
+    categoryController.title=@"Search By Category";
+    UINavigationController *catNavController = [[UINavigationController alloc] initWithRootViewController:categoryController];
+    
+    [tabBarController setViewControllers:@[recentNavController, searchNavController, catNavController]];
+    
     
 }
 
