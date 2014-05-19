@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "WHCategoryTableViewCell.h"
-@interface WHCategoryTableViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+#import "WHDataRetrieval.h"
+#import "WHCategoryObject.h"
+#import "WHStoryObject.h"
+@interface WHCategoryTableViewController : UITableViewController<UITableViewDataSource, UITableViewDelegate>
 -(instancetype)initWithCats;
 -(instancetype)initWithStories:(NSString *)catName;
 @end
