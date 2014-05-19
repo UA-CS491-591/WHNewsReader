@@ -11,7 +11,9 @@
 #import "WHDataRetrieval.h"
 #import "WHCategoryObject.h"
 #import "WHStoryObject.h"
+#import "WHStoryViewController.h"
 @interface WHCategoryTableViewController : UITableViewController<UITableViewDataSource, UITableViewDelegate>
+
 -(instancetype)initWithCats;
 -(instancetype)initWithStories:(NSString *)catName;
 @end
