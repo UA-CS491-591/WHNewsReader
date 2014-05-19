@@ -62,7 +62,11 @@
       ^(NSURLResponse *response, NSData *data, NSError *error){
      
          _categories = [NSObject arrayOfType:[WHCategoryObject class] FromJSONData:data];
-     
+          NSArray *sortedArray;
+          sortedArray = [self.categories sortedArrayUsingComparator:^NSComparisonResult(WHCategoryObject *story1, WHCategoryObject *story2) {
+              return [story1.name compare: story2.name];
+          }];
+          _categories=sortedArray;
          dispatch_async(dispatch_get_main_queue(), ^{
          [self.tableView reloadData];
         });
@@ -79,6 +83,7 @@
      ^(NSURLResponse *response, NSData *data, NSError *error){
          
          _items = [NSObject arrayOfType:[WHStoryObject class] FromJSONData:data];
+         
          
          dispatch_async(dispatch_get_main_queue(), ^{
              [self.tableView reloadData];
