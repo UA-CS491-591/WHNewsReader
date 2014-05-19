@@ -48,6 +48,7 @@
         self.tabBarItem.image=[UIImage imageNamed:@"archive-32.png"];
         self.title=[[NSString alloc] initWithFormat:@"%@ Stories",self.catName];
         _items = [NSArray array];
+        self.tableView.rowHeight=44;
         [self loadStories];
     }
     
@@ -134,16 +135,19 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CategoryTableCell"];
+{   WHCategoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CategoryTableCell"];
     if(self.typeFlag==0){
     if(!cell){
-        cell=[[UITableViewCell alloc] init];
+        cell=[[WHCategoryTableViewCell alloc] init];
         
     }
     WHCategoryObject *cat=[self.categories objectAtIndex:indexPath.row];
         
-    cell.textLabel.text=cat.name;
+    cell.itemNameLabel.text=cat.name;
+    cell.catDescription.text=cat.description;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+    
     
     
     

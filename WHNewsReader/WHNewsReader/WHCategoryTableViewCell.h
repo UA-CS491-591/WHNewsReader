@@ -13,5 +13,6 @@
 
 @property WHCategoryObject *associatedCategory;
 @property (weak, nonatomic) IBOutlet UILabel *itemNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *catDescription;
 
 @end
