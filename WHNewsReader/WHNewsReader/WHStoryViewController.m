@@ -147,15 +147,16 @@
              _storyDate.text = [dateFormatter stringFromDate:story.datePublished];
              _storyImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:story.imageUrl]]];
              
+
              WHAuthorObject *author = [[WHAuthorObject alloc] init];
              _authorMiniImage.image = [NSURL URLWithString:author.imageUrl];
              _authorName.text = [NSString stringWithFormat:@"%@ %@", author.firstName, author.lastName]  ;
              _authorPosition.text = author.position;
+             }
              
              
              
-             
-         });
+         );
          
      }];
   
