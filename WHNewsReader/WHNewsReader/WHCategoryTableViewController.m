@@ -46,7 +46,7 @@
         self.catId=cat.categoryId;
         self.typeFlag=1;
         self.tabBarItem.image=[UIImage imageNamed:@"archive-32.png"];
-        self.title=[[NSString alloc] initWithFormat:@"Stories in %@ Category",self.catName];
+        self.title=[[NSString alloc] initWithFormat:@"%@ Stories",self.catName];
         _items = [NSArray array];
         [self loadStories];
     }

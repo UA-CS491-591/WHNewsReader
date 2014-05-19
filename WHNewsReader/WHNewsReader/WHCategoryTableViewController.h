@@ -15,5 +15,5 @@
 @interface WHCategoryTableViewController : UITableViewController<UITableViewDataSource, UITableViewDelegate>
 
 -(instancetype)initWithCats;
--(instancetype)initWithStories:(WHCategoryObject *)catName;
+-(instancetype)initWithStories:(WHCategoryObject *)cat;
 @end
