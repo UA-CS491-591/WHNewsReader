@@ -29,7 +29,7 @@
         
         self.tabBarItem.title=@"Search By Category";
         self.tabBarItem.image=[UIImage imageNamed:@"archive-32.png"];
-        
+        self.tableView.rowHeight=57;
         self.title = @"Search By Category";
         _categories = [NSArray array];
         [self loadCategories];
@@ -48,7 +48,7 @@
         self.tabBarItem.image=[UIImage imageNamed:@"archive-32.png"];
         self.title=[[NSString alloc] initWithFormat:@"%@ Stories",self.catName];
         _items = [NSArray array];
-        self.tableView.rowHeight=44;
+        
         [self loadStories];
     }
     
@@ -164,20 +164,21 @@
         UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [tableView bounds].size.width, 20)];
         
         [cell addSubview:customView];
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(42,2,[tableView bounds].size.width - 70, 30)];
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85,2.5,[tableView bounds].size.width - 100, 40)];
         titleLabel.text = story.title;
-        UILabel *subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(52, 22, [tableView bounds].size.width - 80, 20)];
+        UILabel *subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 32.5, [tableView bounds].size.width - 100, 40)];
         
         UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:story.imageUrl]]];
         
-        titleLabel.font = [titleLabel.font fontWithSize:20];
-        subTitleLabel.font = [subTitleLabel.font fontWithSize:12];
-        
+        titleLabel.font = [UIFont fontWithName:@"Avenir" size:18];
+        subTitleLabel.font = [UIFont fontWithName:@"Avenir" size:12];
+        subTitleLabel.textColor = [UIColor darkGrayColor];
+        subTitleLabel.numberOfLines = 2;
         subTitleLabel.text = story.subtitle;
         
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
         
-        imageView.frame = CGRectMake(2,2,40,40);
+        imageView.frame = CGRectMake(2.5,2.5,75,75);
         
         [customView addSubview:titleLabel];
         [customView addSubview:subTitleLabel];
@@ -246,6 +247,7 @@
         WHStoryObject *story = [_items objectAtIndex:[indexPath row]];
         WHStoryViewController *storyVC = [[WHStoryViewController alloc] init];
         storyVC.selectedStory = story;
+        storyVC.title=story.title;
         
         [self.navigationController pushViewController:storyVC animated:YES];
     }
