@@ -54,6 +54,9 @@
 		3FB1B16E19251A18008777F9 /* WHDataRetrieval.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB1B16D19251A18008777F9 /* WHDataRetrieval.m */; };
 		3FB1B17A19251A6B008777F9 /* WHLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB1B17819251A6B008777F9 /* WHLoginView.m */; };
 		3FB1B17B19251A6B008777F9 /* WHLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FB1B17919251A6B008777F9 /* WHLoginView.xib */; };
+		3FFDD0E0192BA66800BCDE17 /* recent-25@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FFDD0DF192BA66800BCDE17 /* recent-25@2x.png */; };
+		3FFDD0E2192BA76100BCDE17 /* archive-32@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FFDD0E1192BA76100BCDE17 /* archive-32@2x.png */; };
+		3FFDD0E4192BA78E00BCDE17 /* search-25@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FFDD0E3192BA78E00BCDE17 /* search-25@2x.png */; };
 		8FBE84B6192521CC0019AC09 /* WHLoginObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FBE84B5192521CC0019AC09 /* WHLoginObject.m */; };
 		8FBE84B9192522370019AC09 /* WHUserObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FBE84B8192522370019AC09 /* WHUserObject.m */; };
 /* End PBXBuildFile section */
@@ -133,6 +136,9 @@
 		3FB1B17719251A6B008777F9 /* WHLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHLoginView.h; sourceTree = "<group>"; };
 		3FB1B17819251A6B008777F9 /* WHLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHLoginView.m; sourceTree = "<group>"; };
 		3FB1B17919251A6B008777F9 /* WHLoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WHLoginView.xib; sourceTree = "<group>"; };
+		3FFDD0DF192BA66800BCDE17 /* recent-25@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recent-25@2x.png"; sourceTree = "<group>"; };
+		3FFDD0E1192BA76100BCDE17 /* archive-32@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archive-32@2x.png"; sourceTree = "<group>"; };
+		3FFDD0E3192BA78E00BCDE17 /* search-25@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-25@2x.png"; sourceTree = "<group>"; };
 		8FBE84B4192521CC0019AC09 /* WHLoginObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHLoginObject.h; sourceTree = "<group>"; };
 		8FBE84B5192521CC0019AC09 /* WHLoginObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHLoginObject.m; sourceTree = "<group>"; };
 		8FBE84B7192522370019AC09 /* WHUserObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHUserObject.h; sourceTree = "<group>"; };
@@ -254,7 +260,9 @@
 			children = (
 				3FB1B13B1925195A008777F9 /* Splash screens */,
 				3F37F2871925234600565442 /* recent-25.png */,
+				3FFDD0DF192BA66800BCDE17 /* recent-25@2x.png */,
 				3FB1B12E1925191F008777F9 /* search-25.png */,
+				3FFDD0E3192BA78E00BCDE17 /* search-25@2x.png */,
 				3FB1B11B1925190B008777F9 /* Icons */,
 			);
 			name = Images;
@@ -263,6 +271,7 @@
 		3FB1B11B1925190B008777F9 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				3FFDD0E1192BA76100BCDE17 /* archive-32@2x.png */,
 				3FA50A4819255133009367A4 /* archive-32.png */,
 				3FB1B11C19251916008777F9 /* Icon_1.png */,
 				3FB1B11D19251916008777F9 /* Icon_2.png */,
@@ -494,6 +503,7 @@
 				3FB1B15D192519C4008777F9 /* WHCategoryTableViewController.xib in Resources */,
 				3F804D83192518B100E0EFB9 /* InfoPlist.strings in Resources */,
 				3F804D8B192518B100E0EFB9 /* Images.xcassets in Resources */,
+				3FFDD0E4192BA78E00BCDE17 /* search-25@2x.png in Resources */,
 				3FB1B161192519C4008777F9 /* WHRecentTableViewController.xib in Resources */,
 				3FB1B12B19251916008777F9 /* icononly copy80.png in Resources */,
 				3FB1B13A19251957008777F9 /* SplashScreen4-02.png in Resources */,
@@ -504,12 +514,14 @@
 				3FB1B15F192519C4008777F9 /* WHLoginViewController.xib in Resources */,
 				3FB1B17B19251A6B008777F9 /* WHLoginView.xib in Resources */,
 				3F37F2881925234600565442 /* recent-25.png in Resources */,
+				3FFDD0E0192BA66800BCDE17 /* recent-25@2x.png in Resources */,
 				3FB1B13919251957008777F9 /* SplashScreen3-04.png in Resources */,
 				3FB1B12819251916008777F9 /* icononly copy40.png in Resources */,
 				3FB1B15B192519C4008777F9 /* WHAuthorViewController.xib in Resources */,
 				3FB1B12719251916008777F9 /* Icon.png in Resources */,
 				3FB1B12919251916008777F9 /* icononly copy58.png in Resources */,
 				3FB1B12519251916008777F9 /* Icon_1.png in Resources */,
+				3FFDD0E2192BA76100BCDE17 /* archive-32@2x.png in Resources */,
 				3FB1B163192519C4008777F9 /* WHSearchTableViewController.xib in Resources */,
 				3FA50A4919255133009367A4 /* archive-32.png in Resources */,
 				3FB1B12619251916008777F9 /* Icon_2.png in Resources */,
