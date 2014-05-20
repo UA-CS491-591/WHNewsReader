@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WHSearchTableViewController : UITableViewController <UISearchBarDelegate,UISearchDisplayDelegate>
+@interface WHSearchTableViewController : UIViewController <UISearchBarDelegate,UISearchDisplayDelegate>
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar;
 

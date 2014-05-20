@@ -57,6 +57,7 @@
 		3FFDD0E0192BA66800BCDE17 /* recent-25@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FFDD0DF192BA66800BCDE17 /* recent-25@2x.png */; };
 		3FFDD0E2192BA76100BCDE17 /* archive-32@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FFDD0E1192BA76100BCDE17 /* archive-32@2x.png */; };
 		3FFDD0E4192BA78E00BCDE17 /* search-25@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FFDD0E3192BA78E00BCDE17 /* search-25@2x.png */; };
+		8F4444A6192BAAA300E2C6FC /* WHSearchTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F4444A5192BAAA300E2C6FC /* WHSearchTableView.m */; };
 		8FBE84B6192521CC0019AC09 /* WHLoginObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FBE84B5192521CC0019AC09 /* WHLoginObject.m */; };
 		8FBE84B9192522370019AC09 /* WHUserObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FBE84B8192522370019AC09 /* WHUserObject.m */; };
 /* End PBXBuildFile section */
@@ -139,6 +140,8 @@
 		3FFDD0DF192BA66800BCDE17 /* recent-25@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recent-25@2x.png"; sourceTree = "<group>"; };
 		3FFDD0E1192BA76100BCDE17 /* archive-32@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archive-32@2x.png"; sourceTree = "<group>"; };
 		3FFDD0E3192BA78E00BCDE17 /* search-25@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-25@2x.png"; sourceTree = "<group>"; };
+		8F4444A4192BAAA300E2C6FC /* WHSearchTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHSearchTableView.h; sourceTree = "<group>"; };
+		8F4444A5192BAAA300E2C6FC /* WHSearchTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHSearchTableView.m; sourceTree = "<group>"; };
 		8FBE84B4192521CC0019AC09 /* WHLoginObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHLoginObject.h; sourceTree = "<group>"; };
 		8FBE84B5192521CC0019AC09 /* WHLoginObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHLoginObject.m; sourceTree = "<group>"; };
 		8FBE84B7192522370019AC09 /* WHUserObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHUserObject.h; sourceTree = "<group>"; };
@@ -289,6 +292,7 @@
 		3FB1B1301925192F008777F9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8F4444A7192BAAAE00E2C6FC /* Search */,
 				3FB1B17719251A6B008777F9 /* WHLoginView.h */,
 				3FB1B17819251A6B008777F9 /* WHLoginView.m */,
 				3FB1B17919251A6B008777F9 /* WHLoginView.xib */,
@@ -420,6 +424,15 @@
 				3FA50A40192549F4009367A4 /* Category */,
 			);
 			name = "TableView Cells";
+			sourceTree = "<group>";
+		};
+		8F4444A7192BAAAE00E2C6FC /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				8F4444A4192BAAA300E2C6FC /* WHSearchTableView.h */,
+				8F4444A5192BAAA300E2C6FC /* WHSearchTableView.m */,
+			);
+			name = Search;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -559,6 +572,7 @@
 				3FB1B17A19251A6B008777F9 /* WHLoginView.m in Sources */,
 				3F804D89192518B100E0EFB9 /* WHAppDelegate.m in Sources */,
 				3FB1B160192519C4008777F9 /* WHRecentTableViewController.m in Sources */,
+				8F4444A6192BAAA300E2C6FC /* WHSearchTableView.m in Sources */,
 				3FB1B13619251952008777F9 /* NSObject+ObjectMap.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

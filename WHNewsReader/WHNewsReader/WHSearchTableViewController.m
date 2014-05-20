@@ -21,9 +21,9 @@
 @implementation WHSearchTableViewController
 
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithStyle:style];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         //_searchTableView = [[WHSearchTableView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         self.tabBarItem.title = @"Search";
@@ -36,6 +36,63 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
+    
+    // disable search bar when loading
+    //[tableSearchBar setUserInteractionEnabled:NO];
+    
+    UIView *iconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 22, 25)];
+    UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 5, 15, 15)];
+    [iconImageView setImage:[UIImage imageNamed:@"Search.png"]];
+    [iconView addSubview:iconImageView];
+    
+    //filteredArray = [[NSMutableArray alloc] init];
+    
+    // Set separator line under segmented control to 1 point
+    //    CGRect newFrame = separator.frame;
+    //    newFrame.size.width = separator.frame.size.width;
+    //    newFrame.size.height = 0.5f;
+   /* separator.frame = CGRectMake(0, 49, separator.frame.size.width, 0.5f);
+    
+    // Set up search bar
+    
+    UISearchBar* tableSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 44)];
+    tableSearchBar.placeholder = @"Search";
+    [tableSearchBar setScopeButtonTitles:[NSArray arrayWithObjects:@"Arrests", @"Warrants", nil]];
+    
+    tableSearchBar.delegate = self;
+    
+    //ArrestsTableView.tableHeaderView = tableSearchBar;
+    
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    UITableViewController* tableViewController = [[UITableViewController alloc]initWithStyle:UITableViewStylePlain];
+    tableViewController.tableView = ;//ArrestsTableView;
+    
+    // Set up search display controller
+    self.searchController = [[UISearchDisplayController alloc] initWithSearchBar:tableSearchBar contentsController:self];
+    self.searchDisplayController.delegate = self;
+    self.searchDisplayController.searchResultsDataSource = self;
+    //    self.searchDisplayController.searchResultsDelegate = self;
+    self.searchController.searchResultsTableView.frame = [ArrestsTableView frame];
+    
+    //Set up refresh control
+    refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refreshArrestsTable) forControlEvents:UIControlEventValueChanged];
+    [ArrestsTableView setContentOffset:CGPointMake(0.0f, -60.0f) animated:YES];
+    tableViewController.refreshControl = refreshControl;
+    [refreshControl beginRefreshing];
+
+    */
+    
+    
+    
+    
+    
+    
+    
+    
     
     // setup searchBar and searchDisplayController
     
