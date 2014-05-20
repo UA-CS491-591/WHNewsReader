@@ -11,6 +11,8 @@
 #import "NSObject+ObjectMap.h"
 #import "WHStoryObject.h"
 #import "WHStoryViewController.h"
+#import "WHAppDelegate.h"
+#import "WHSearchTableView.h"
 
 @interface WHSearchTableViewController ()
 
@@ -42,7 +44,7 @@
     // disable search bar when loading
     //[tableSearchBar setUserInteractionEnabled:NO];
     
-    UIView *iconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 22, 25)];
+   /* UIView *iconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 22, 25)];
     UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 5, 15, 15)];
     [iconImageView setImage:[UIImage imageNamed:@"Search.png"]];
     [iconView addSubview:iconImageView];
@@ -53,19 +55,25 @@
     //    CGRect newFrame = separator.frame;
     //    newFrame.size.width = separator.frame.size.width;
     //    newFrame.size.height = 0.5f;
-   /* separator.frame = CGRectMake(0, 49, separator.frame.size.width, 0.5f);
+    UIView *separator = [[UIView alloc] init];
+    separator.frame = CGRectMake(0, 49, separator.frame.size.width, 0.5f);
+    
+    */
     
     // Set up search bar
     
-    UISearchBar* tableSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 44)];
+ /*   UISearchBar* tableSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 44)];
     tableSearchBar.placeholder = @"Search";
     [tableSearchBar setScopeButtonTitles:[NSArray arrayWithObjects:@"Arrests", @"Warrants", nil]];
     
     tableSearchBar.delegate = self;
     
+    WHSearchTableView *searchTableView = [[WHSearchTableView alloc] initWithFrame:CGRectMake(0,0,[[UIScreen mainScreen] bounds].size.width,
+                                                                                             [[UIScreen mainScreen] bounds].size.height)];
+    
     //ArrestsTableView.tableHeaderView = tableSearchBar;
     
-    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    WHAppDelegate *delegate = (WHAppDelegate *)[[UIApplication sharedApplication] delegate];
     
     UITableViewController* tableViewController = [[UITableViewController alloc]initWithStyle:UITableViewStylePlain];
     tableViewController.tableView = ;//ArrestsTableView;
@@ -84,9 +92,9 @@
     tableViewController.refreshControl = refreshControl;
     [refreshControl beginRefreshing];
 
+    
+    j
     */
-    
-    
     
     
     
@@ -100,7 +108,7 @@
     [searchBar sizeToFit];
     searchBar.delegate = self;
     searchBar.placeholder = @"Search";
-    self.tableView.tableHeaderView = searchBar;
+    //self.tableView.tableHeaderView = searchBar;
     
     /*UISearchDisplayController *searchDC = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
     */
@@ -125,7 +133,7 @@
          _items = [NSObject arrayOfType:[WHStoryObject class] FromJSONData:data];
          
          dispatch_async(dispatch_get_main_queue(), ^{
-             [self.tableView reloadData];
+             //[self.tableView reloadData];
          });
      }];
 }
@@ -143,7 +151,7 @@
              _items = [NSObject arrayOfType:[WHStoryObject class] FromJSONData:data];
              
              dispatch_async(dispatch_get_main_queue(), ^{
-                 [self.tableView reloadData];
+                 //[self.tableView reloadData];
              });
              
          }];
