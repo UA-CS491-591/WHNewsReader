@@ -16,6 +16,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *recentStoriesTableView;
 @property NSArray *items;
+@property UIRefreshControl *refreshControl;
 @end
 
 @implementation WHRecentTableViewController
@@ -25,6 +26,14 @@
 {
     [super viewDidLoad];
     [self populateInitialData];
+    
+    _refreshControl = [[UIRefreshControl alloc] initWithFrame:CGRectMake(0, -60, _recentStoriesTableView.frame.size.width, 60)];
+    
+    [_refreshControl addTarget:self action:@selector(populateInitialData) forControlEvents:UIControlEventValueChanged];
+    
+    
+    
+    [_recentStoriesTableView addSubview:_refreshControl];
     
 }
 
@@ -62,8 +71,10 @@
     
     [cell addSubview:customView];
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85,2.5,[tableView bounds].size.width - 100, 40)];
+    titleLabel.backgroundColor = [UIColor whiteColor];
     titleLabel.text = story.title;
     UILabel *subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 32.5, [tableView bounds].size.width - 100, 40)];
+    subTitleLabel.backgroundColor = [UIColor whiteColor];
     
     UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:story.imageUrl]]];
     
@@ -92,6 +103,7 @@
          
          dispatch_async(dispatch_get_main_queue(), ^{
              [self.recentStoriesTableView reloadData];
+             [_refreshControl endRefreshing];
              
          });
          
