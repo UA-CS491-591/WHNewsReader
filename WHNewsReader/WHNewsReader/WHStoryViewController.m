@@ -94,6 +94,7 @@
 
 #import "WHStoryViewController.h"
 #import "WHAuthorObject.h"
+#import "WHAuthorViewController.h"
 #import "WHDataRetrieval.h"
 #import "NSObject+ObjectMap.h"
 
@@ -108,11 +109,20 @@
 @property (weak, nonatomic) IBOutlet UILabel *authorPosition;
 @property (weak, nonatomic) IBOutlet UIButton *authorInfo;
 @property (weak, nonatomic) IBOutlet UILabel *storyDate;
+@property WHAuthorObject *author;
 
 
 @end
 
 @implementation WHStoryViewController
+
+
+- (IBAction)authorButtonPressed:(id)sender {
+    
+    WHAuthorViewController *authorVC = [[WHAuthorViewController alloc] init];
+    authorVC.selectedAuthor = _author;
+    [self.navigationController pushViewController:authorVC animated:YES];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -148,13 +158,28 @@
              _storyImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:story.imageUrl]]];
              
 
-             WHAuthorObject *author = [[WHAuthorObject alloc] init];
-             _authorMiniImage.image = [NSURL URLWithString:author.imageUrl];
-             _authorName.text = [NSString stringWithFormat:@"%@ %@", author.firstName, author.lastName]  ;
-             _authorPosition.text = author.position;
+             //WHAuthorObject *author = [[WHAuthorObject alloc] init];
+             //_authorMiniImage.image = [NSURL URLWithString:author.imageUrl];
+             
+             _author = [[WHAuthorObject alloc] init];
+             _author.firstName = story.author.firstName;
+             _author.lastName = story.author.lastName;
+             _author.position = story.author.position;
+             _author.imageUrl = story.author.imageUrl;
+             _author.email = story.author.email;
+             
+             NSURL *url = [NSURL URLWithString:_author.imageUrl];
+             NSData *data = [NSData dataWithContentsOfURL:url];
+             UIImage *img = [[UIImage alloc] initWithData:data];
+             
+             _authorMiniImage.image = img;
+             
+             
+             
+             _authorName.text = [NSString stringWithFormat:@"%@ %@", _author.firstName, _author.lastName];
+             _authorPosition.text = _author.position;
+             
              }
-             
-             
              
          );
          

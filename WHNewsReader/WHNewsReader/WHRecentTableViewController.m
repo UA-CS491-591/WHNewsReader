@@ -15,7 +15,6 @@
 @interface WHRecentTableViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *recentStoriesTableView;
-@property NSMutableArray *recentItems;
 @property NSArray *items;
 @end
 
@@ -25,7 +24,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _recentItems = [[NSMutableArray alloc] init];
     [self populateInitialData];
     
 }

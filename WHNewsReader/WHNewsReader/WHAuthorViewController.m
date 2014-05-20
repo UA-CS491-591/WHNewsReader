@@ -35,8 +35,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     WHAuthorObject *author = _selectedAuthor;
+    
+    
+    NSURL *url = [NSURL URLWithString:author.imageUrl];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    UIImage *img = [[UIImage alloc] initWithData:data];
+    
     _authorName.text = [NSString stringWithFormat:@"%@ %@", author.firstName, author.lastName]  ;
-    _authorImage.image = [NSURL URLWithString:author.imageUrl];
+    _authorImage.image = img;
     _authorPosition.text = author.position;
     _authorEmail.text = author.email;
     _authorUsername.text = author.username;

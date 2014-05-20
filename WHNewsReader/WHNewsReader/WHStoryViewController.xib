@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -71,7 +71,7 @@
                             <rect key="frame" x="-1" y="480" width="297" height="45"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eVQ-OX-cJg">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eVQ-OX-cJg">
                                     <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </imageView>
@@ -90,19 +90,18 @@
                                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HQu-wV-2FQ">
                                     <rect key="frame" x="247" y="12" width="22" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <connections>
+                                        <action selector="authorButtonPressed:" destination="-1" eventType="touchUpInside" id="eyD-ph-Blo"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="iqX-jV-nuO" firstAttribute="top" secondItem="chF-hB-XWR" secondAttribute="bottom" constant="-1" id="3lR-Su-2ce"/>
                                 <constraint firstAttribute="bottom" secondItem="HQu-wV-2FQ" secondAttribute="bottom" constant="11" id="FK6-Es-vUc"/>
-                                <constraint firstAttribute="trailing" secondItem="eVQ-OX-cJg" secondAttribute="trailing" constant="252" id="LVL-Ai-yEs"/>
                                 <constraint firstAttribute="trailing" secondItem="chF-hB-XWR" secondAttribute="trailing" constant="16" id="Ngl-3X-vko"/>
                                 <constraint firstAttribute="trailing" secondItem="iqX-jV-nuO" secondAttribute="trailing" constant="126" id="Z9N-RT-GaN"/>
                                 <constraint firstAttribute="trailing" secondItem="HQu-wV-2FQ" secondAttribute="trailing" constant="28" id="jYK-bE-1RK"/>
-                                <constraint firstItem="eVQ-OX-cJg" firstAttribute="height" secondItem="FDD-6E-ooP" secondAttribute="height" id="qMr-ZQ-ET8"/>
-                                <constraint firstAttribute="bottom" secondItem="eVQ-OX-cJg" secondAttribute="bottom" id="vh1-tx-xUF"/>
-                                <constraint firstItem="eVQ-OX-cJg" firstAttribute="leading" secondItem="FDD-6E-ooP" secondAttribute="leading" constant="13" id="xt3-9t-zCz"/>
                             </constraints>
                         </view>
                     </subviews>
