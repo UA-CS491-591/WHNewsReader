@@ -17,6 +17,7 @@
 @interface WHSearchTableViewController ()
 
 @property NSArray *items;
+@property UISearchDisplayController *searchController;
 
 @end
 
@@ -28,7 +29,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         //_searchTableView = [[WHSearchTableView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-        self.tabBarItem.title = @"Search";
+        //self.tabBarItem.title = @"Search";
         self.tabBarItem.image = [UIImage imageNamed:@"search-25.png"];
     }
     
@@ -44,7 +45,7 @@
     // disable search bar when loading
     //[tableSearchBar setUserInteractionEnabled:NO];
     
-   /* UIView *iconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 22, 25)];
+    UIView *iconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 22, 25)];
     UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 5, 15, 15)];
     [iconImageView setImage:[UIImage imageNamed:@"Search.png"]];
     [iconView addSubview:iconImageView];
@@ -55,52 +56,47 @@
     //    CGRect newFrame = separator.frame;
     //    newFrame.size.width = separator.frame.size.width;
     //    newFrame.size.height = 0.5f;
-    UIView *separator = [[UIView alloc] init];
+  /*  UIView *separator = [[UIView alloc] init];
     separator.frame = CGRectMake(0, 49, separator.frame.size.width, 0.5f);
     
-    */
+    
     
     // Set up search bar
     
- /*   UISearchBar* tableSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 44)];
+    UISearchBar* tableSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 44)];
     tableSearchBar.placeholder = @"Search";
     [tableSearchBar setScopeButtonTitles:[NSArray arrayWithObjects:@"Arrests", @"Warrants", nil]];
     
     tableSearchBar.delegate = self;
     
-    WHSearchTableView *searchTableView = [[WHSearchTableView alloc] initWithFrame:CGRectMake(0,0,[[UIScreen mainScreen] bounds].size.width,
-                                                                                             [[UIScreen mainScreen] bounds].size.height)];
+    WHSearchTableView *searchTableView = [[WHSearchTableView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    //ArrestsTableView.tableHeaderView = tableSearchBar;
+    searchTableView.tableHeaderView = tableSearchBar;
     
-    WHAppDelegate *delegate = (WHAppDelegate *)[[UIApplication sharedApplication] delegate];
+    //WHAppDelegate *delegate = (WHAppDelegate *)[[UIApplication sharedApplication] delegate];
     
     UITableViewController* tableViewController = [[UITableViewController alloc]initWithStyle:UITableViewStylePlain];
-    tableViewController.tableView = ;//ArrestsTableView;
+    tableViewController.tableView = searchTableView;//ArrestsTableView;
     
     // Set up search display controller
     self.searchController = [[UISearchDisplayController alloc] initWithSearchBar:tableSearchBar contentsController:self];
     self.searchDisplayController.delegate = self;
     self.searchDisplayController.searchResultsDataSource = self;
     //    self.searchDisplayController.searchResultsDelegate = self;
-    self.searchController.searchResultsTableView.frame = [ArrestsTableView frame];
+    self.searchController.searchResultsTableView.frame = [searchTableView frame];
     
     //Set up refresh control
-    refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(refreshArrestsTable) forControlEvents:UIControlEventValueChanged];
-    [ArrestsTableView setContentOffset:CGPointMake(0.0f, -60.0f) animated:YES];
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refreshStoryTable) forControlEvents:UIControlEventValueChanged];
+    [searchTableView setContentOffset:CGPointMake(0.0f, -60.0f) animated:YES];
     tableViewController.refreshControl = refreshControl;
     [refreshControl beginRefreshing];
 
+    //[self addChildViewController:tableViewController];
     
-    j
+    //self.view = searchTableView;
+    
     */
-    
-    
-    
-    
-    
-    
     
     // setup searchBar and searchDisplayController
     
@@ -108,20 +104,25 @@
     [searchBar sizeToFit];
     searchBar.delegate = self;
     searchBar.placeholder = @"Search";
-    //self.tableView.tableHeaderView = searchBar;
+    self.tableView.tableHeaderView = searchBar;
     
-    /*UISearchDisplayController *searchDC = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
-    */
+    UISearchDisplayController *searchDC = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
+    
     // The above assigns self.searchDisplayController, but without retaining.
     // Force the read-only property to be set and retained.
-    /*[self performSelector:@selector(setSearchDisplayController:) withObject:searchDC];
+    [self performSelector:@selector(setSearchDisplayController:) withObject:searchDC];
     
     searchDC.delegate = self;
     searchDC.searchResultsDataSource = self;
     searchDC.searchResultsDelegate = self;
-    */
+    
     
     [self populateInitialData];
+}
+
+-(void)refreshStoryTable
+{
+
 }
 
 -(void)populateInitialData
@@ -133,7 +134,7 @@
          _items = [NSObject arrayOfType:[WHStoryObject class] FromJSONData:data];
          
          dispatch_async(dispatch_get_main_queue(), ^{
-             //[self.tableView reloadData];
+             [self.tableView reloadData];
          });
      }];
 }
@@ -151,7 +152,7 @@
              _items = [NSObject arrayOfType:[WHStoryObject class] FromJSONData:data];
              
              dispatch_async(dispatch_get_main_queue(), ^{
-                 //[self.tableView reloadData];
+                 [self.tableView reloadData];
              });
              
          }];
@@ -178,39 +179,59 @@
     return _items.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    return 80;
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    [self populateInitialData];
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, [tableView bounds].size.width, [tableView bounds].size.height)];
     
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+   
     
-    WHStoryObject *story = [_items objectAtIndex:indexPath.row];
-    //cell.textLabel.text = [story title];
     
-    UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [tableView bounds].size.width, 20)];
+    @try {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+        WHStoryObject *story = [_items objectAtIndex:indexPath.row];
+        //cell.textLabel.text = [story title];
+        
+        
+        UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [tableView bounds].size.width, 20)];
+        
+        [cell addSubview:customView];
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85,2.5,[tableView bounds].size.width - 100, 40)];
+        titleLabel.text = story.title;
+        UILabel *subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 32.5, [tableView bounds].size.width - 100, 40)];
+        
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:story.imageUrl]]];
+        
+        titleLabel.font = [UIFont fontWithName:@"Avenir" size:18];
+        subTitleLabel.font = [UIFont fontWithName:@"Avenir" size:12];
+        subTitleLabel.textColor = [UIColor darkGrayColor];
+        subTitleLabel.numberOfLines = 2;
+        subTitleLabel.text = story.subtitle;
+        
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        
+        imageView.frame = CGRectMake(2.5,2.5,75,75);
+        
+        [customView addSubview:titleLabel];
+        [customView addSubview:subTitleLabel];
+        [customView addSubview:imageView];
+        return cell;
+    }
+    @catch (NSException * e) {
+        return cell;
+    }
     
-    [cell addSubview:customView];
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85,2.5,[tableView bounds].size.width - 100, 40)];
-    titleLabel.text = story.title;
-    UILabel *subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 32.5, [tableView bounds].size.width - 100, 40)];
-    
-    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:story.imageUrl]]];
-    
-    titleLabel.font = [UIFont fontWithName:@"Avenir" size:18];
-    subTitleLabel.font = [UIFont fontWithName:@"Avenir" size:12];
-    subTitleLabel.textColor = [UIColor darkGrayColor];
-    subTitleLabel.numberOfLines = 2;
-    subTitleLabel.text = story.subtitle;
-    
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-    
-    imageView.frame = CGRectMake(2.5,2.5,75,75);
-    
-    [customView addSubview:titleLabel];
-    [customView addSubview:subTitleLabel];
-    [customView addSubview:imageView];
-    return cell;
+   
 }
 
 
@@ -265,12 +286,6 @@
     
     [searchBar resignFirstResponder];
 }
-
-- (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
-{
-    
-}
-
 
 
 /*
