@@ -26,7 +26,7 @@
     
     if (self) {
         self.typeFlag=0;
-        
+        self.tableView.backgroundColor=[UIColor whiteColor];
         self.tabBarItem.title=@"Search By Category";
         self.tabBarItem.image=[UIImage imageNamed:@"archive-32.png"];
         self.tableView.rowHeight=57;

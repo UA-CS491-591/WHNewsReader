@@ -12,7 +12,7 @@
 
 -(instancetype)init{
     self=[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([WHCategoryTableViewCell class]) owner:nil options:nil][0];
-    
+    self.backgroundColor= [UIColor whiteColor];
     return self;
 }
 

@@ -147,6 +147,7 @@
          
          dispatch_async(dispatch_get_main_queue(), ^{
              WHStoryObject *story = _selectedStory;
+             self.title = story.title;
              _storyTitle.text = story.title;
              _storySubtitle.text = story.subtitle;
              _storyBody.text = story.body;
