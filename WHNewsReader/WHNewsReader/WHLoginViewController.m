@@ -28,7 +28,6 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:@"WHLoginViewController" bundle:nil];
-    //self = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([WHLoginView class]) owner:nil options:nil][0];
     if (self) {
         // Custom initialization
     }
@@ -54,13 +53,7 @@
 - (IBAction)didSelectGo:(id)sender
 {
     [self.view endEditing:YES];
-    [self makeRequest];
-    if(self.isLoginSuccessful == YES)
-    {
-        //[self createTabBar];
-        
-    }
-    
+    [self login];
 }
 
 -(void) createTabBar
@@ -72,7 +65,6 @@
     WHSearchTableViewController *searchController = [[WHSearchTableViewController alloc] init];
     searchController.title = @"Search Stories";
     UINavigationController *searchNavController = [[UINavigationController alloc] initWithRootViewController:searchController];
-    
     
     WHRecentTableViewController *recentController = [[WHRecentTableViewController alloc] init];
     recentController.title = @"Recent Stories";
@@ -86,7 +78,7 @@
     [tabBarController setViewControllers:@[recentNavController, searchNavController, catNavController]];
     
     [loginNav pushViewController:tabBarController animated:YES];
-    
+    //[self presentViewController:tabBarController animated:YES completion:nil];
     
 }
 
@@ -137,16 +129,23 @@
         NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         //Log out response
         NSLog(@"%@", responseString);
-        _isSuccessful = YES;
+        if(![responseString  isEqual: @"null"]) {
+            _isSuccessful = YES;
+        }
         
         //[self parseJSONtoObjects:loginData];
         
+        if(_isSuccessful == YES) {
+            NSLog(@"%hhd", _isSuccessful);
+            [self createTabBar];
+        }
     }];
+    
 }
 
 - (void)parseJSONtoObjects:(NSData *)responseData
 {
-    if(responseData == nil)
+    if(responseData == NULL)
         return;
     NSError *error;
     NSMutableDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:&error];
