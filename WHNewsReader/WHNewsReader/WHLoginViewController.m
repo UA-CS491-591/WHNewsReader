@@ -67,7 +67,7 @@
 {
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     
-    UINavigationController *loginNav = [[[UINavigationController alloc] init];
+    UINavigationController *loginNav = [[UINavigationController alloc] initWithRootViewController:self];
                                         
     WHSearchTableViewController *searchController = [[WHSearchTableViewController alloc] init];
     searchController.title = @"Search Stories";
@@ -84,6 +84,8 @@
     UINavigationController *catNavController = [[UINavigationController alloc] initWithRootViewController:categoryController];
     
     [tabBarController setViewControllers:@[recentNavController, searchNavController, catNavController]];
+    
+    [loginNav pushViewController:tabBarController animated:YES];
     
     
 }
