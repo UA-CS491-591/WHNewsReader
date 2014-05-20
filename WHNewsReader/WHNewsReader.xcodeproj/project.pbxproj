@@ -38,7 +38,6 @@
 		3FB1B13A19251957008777F9 /* SplashScreen4-02.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB1B13819251957008777F9 /* SplashScreen4-02.png */; };
 		3FB1B144192519A5008777F9 /* WHAuthorObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB1B13D192519A5008777F9 /* WHAuthorObject.m */; };
 		3FB1B145192519A5008777F9 /* WHCategoryObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB1B13F192519A5008777F9 /* WHCategoryObject.m */; };
-		3FB1B146192519A5008777F9 /* WHRecentObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB1B141192519A5008777F9 /* WHRecentObject.m */; };
 		3FB1B147192519A5008777F9 /* WHStoryObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB1B143192519A5008777F9 /* WHStoryObject.m */; };
 		3FB1B15A192519C4008777F9 /* WHAuthorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB1B149192519C3008777F9 /* WHAuthorViewController.m */; };
 		3FB1B15B192519C4008777F9 /* WHAuthorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FB1B14A192519C3008777F9 /* WHAuthorViewController.xib */; };
@@ -53,8 +52,6 @@
 		3FB1B164192519C4008777F9 /* WHStoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB1B158192519C4008777F9 /* WHStoryViewController.m */; };
 		3FB1B165192519C4008777F9 /* WHStoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FB1B159192519C4008777F9 /* WHStoryViewController.xib */; };
 		3FB1B16E19251A18008777F9 /* WHDataRetrieval.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB1B16D19251A18008777F9 /* WHDataRetrieval.m */; };
-		3FB1B17419251A30008777F9 /* WHRecentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB1B17219251A30008777F9 /* WHRecentTableViewCell.m */; };
-		3FB1B17519251A30008777F9 /* WHRecentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FB1B17319251A30008777F9 /* WHRecentTableViewCell.xib */; };
 		3FB1B17A19251A6B008777F9 /* WHLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB1B17819251A6B008777F9 /* WHLoginView.m */; };
 		3FB1B17B19251A6B008777F9 /* WHLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FB1B17919251A6B008777F9 /* WHLoginView.xib */; };
 		8FBE84B6192521CC0019AC09 /* WHLoginObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FBE84B5192521CC0019AC09 /* WHLoginObject.m */; };
@@ -111,8 +108,6 @@
 		3FB1B13D192519A5008777F9 /* WHAuthorObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHAuthorObject.m; sourceTree = "<group>"; };
 		3FB1B13E192519A5008777F9 /* WHCategoryObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHCategoryObject.h; sourceTree = "<group>"; };
 		3FB1B13F192519A5008777F9 /* WHCategoryObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHCategoryObject.m; sourceTree = "<group>"; };
-		3FB1B140192519A5008777F9 /* WHRecentObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHRecentObject.h; sourceTree = "<group>"; };
-		3FB1B141192519A5008777F9 /* WHRecentObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHRecentObject.m; sourceTree = "<group>"; };
 		3FB1B142192519A5008777F9 /* WHStoryObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHStoryObject.h; sourceTree = "<group>"; };
 		3FB1B143192519A5008777F9 /* WHStoryObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHStoryObject.m; sourceTree = "<group>"; };
 		3FB1B148192519C3008777F9 /* WHAuthorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHAuthorViewController.h; sourceTree = "<group>"; };
@@ -135,9 +130,6 @@
 		3FB1B159192519C4008777F9 /* WHStoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WHStoryViewController.xib; sourceTree = "<group>"; };
 		3FB1B16C19251A18008777F9 /* WHDataRetrieval.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHDataRetrieval.h; sourceTree = "<group>"; };
 		3FB1B16D19251A18008777F9 /* WHDataRetrieval.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHDataRetrieval.m; sourceTree = "<group>"; };
-		3FB1B17119251A30008777F9 /* WHRecentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHRecentTableViewCell.h; sourceTree = "<group>"; };
-		3FB1B17219251A30008777F9 /* WHRecentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHRecentTableViewCell.m; sourceTree = "<group>"; };
-		3FB1B17319251A30008777F9 /* WHRecentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WHRecentTableViewCell.xib; sourceTree = "<group>"; };
 		3FB1B17719251A6B008777F9 /* WHLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHLoginView.h; sourceTree = "<group>"; };
 		3FB1B17819251A6B008777F9 /* WHLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHLoginView.m; sourceTree = "<group>"; };
 		3FB1B17919251A6B008777F9 /* WHLoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WHLoginView.xib; sourceTree = "<group>"; };
@@ -316,8 +308,6 @@
 				3FB1B13D192519A5008777F9 /* WHAuthorObject.m */,
 				3FB1B13E192519A5008777F9 /* WHCategoryObject.h */,
 				3FB1B13F192519A5008777F9 /* WHCategoryObject.m */,
-				3FB1B140192519A5008777F9 /* WHRecentObject.h */,
-				3FB1B141192519A5008777F9 /* WHRecentObject.m */,
 				3FB1B142192519A5008777F9 /* WHStoryObject.h */,
 				3FB1B143192519A5008777F9 /* WHStoryObject.m */,
 				8FBE84B4192521CC0019AC09 /* WHLoginObject.h */,
@@ -419,19 +409,8 @@
 			isa = PBXGroup;
 			children = (
 				3FA50A40192549F4009367A4 /* Category */,
-				3FB1B17619251A35008777F9 /* Recent */,
 			);
 			name = "TableView Cells";
-			sourceTree = "<group>";
-		};
-		3FB1B17619251A35008777F9 /* Recent */ = {
-			isa = PBXGroup;
-			children = (
-				3FB1B17119251A30008777F9 /* WHRecentTableViewCell.h */,
-				3FB1B17219251A30008777F9 /* WHRecentTableViewCell.m */,
-				3FB1B17319251A30008777F9 /* WHRecentTableViewCell.xib */,
-			);
-			name = Recent;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -510,7 +489,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FB1B17519251A30008777F9 /* WHRecentTableViewCell.xib in Resources */,
 				3FB1B12D19251916008777F9 /* icononly.png in Resources */,
 				3FB1B12C19251916008777F9 /* icononly copy120.png in Resources */,
 				3FB1B15D192519C4008777F9 /* WHCategoryTableViewController.xib in Resources */,
@@ -556,7 +534,6 @@
 				8FBE84B6192521CC0019AC09 /* WHLoginObject.m in Sources */,
 				3FB1B162192519C4008777F9 /* WHSearchTableViewController.m in Sources */,
 				8FBE84B9192522370019AC09 /* WHUserObject.m in Sources */,
-				3FB1B146192519A5008777F9 /* WHRecentObject.m in Sources */,
 				3FB1B15E192519C4008777F9 /* WHLoginViewController.m in Sources */,
 				3FB1B144192519A5008777F9 /* WHAuthorObject.m in Sources */,
 				3FB1B145192519A5008777F9 /* WHCategoryObject.m in Sources */,
@@ -568,7 +545,6 @@
 				3FB1B15A192519C4008777F9 /* WHAuthorViewController.m in Sources */,
 				3F804D85192518B100E0EFB9 /* main.m in Sources */,
 				3FB1B17A19251A6B008777F9 /* WHLoginView.m in Sources */,
-				3FB1B17419251A30008777F9 /* WHRecentTableViewCell.m in Sources */,
 				3F804D89192518B100E0EFB9 /* WHAppDelegate.m in Sources */,
 				3FB1B160192519C4008777F9 /* WHRecentTableViewController.m in Sources */,
 				3FB1B13619251952008777F9 /* NSObject+ObjectMap.m in Sources */,
