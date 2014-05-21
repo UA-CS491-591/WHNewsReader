@@ -58,7 +58,7 @@
 
 -(void)loadCategories{
     
-    [WHDataRetrieval setUserToken:@"b7a2ac80-67a7-41bb-a7ff-8e6574b0bdf2"];
+    //[WHDataRetrieval setUserToken:@"b7a2ac80-67a7-41bb-a7ff-8e6574b0bdf2"];
     [WHDataRetrieval getCategories:[WHDataRetrieval userToken] completetionHandler:
       ^(NSURLResponse *response, NSData *data, NSError *error){
      
@@ -79,7 +79,7 @@
     
 }
 -(void)loadStories{
-    [WHDataRetrieval setUserToken:@"b7a2ac80-67a7-41bb-a7ff-8e6574b0bdf2"];
+    //[WHDataRetrieval setUserToken:@"b7a2ac80-67a7-41bb-a7ff-8e6574b0bdf2"];
     [WHDataRetrieval getStoryByCategory:self.catId userToken:[WHDataRetrieval userToken] completetionHandler:
      ^(NSURLResponse *response, NSData *data, NSError *error){
          
@@ -97,7 +97,7 @@
 {
     [super viewDidLoad];
     
-    
+    [self.tableView reloadData];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -246,6 +246,7 @@
     
         // Push the view controller.
         [self.navigationController pushViewController:detailViewController animated:YES];
+        [self.tableView reloadData];
     }
     else{
         WHStoryObject *story = [_items objectAtIndex:[indexPath row]];
@@ -254,6 +255,7 @@
         
         
         [self.navigationController pushViewController:storyVC animated:YES];
+        [self.tableView reloadData];
     }
 }
 
