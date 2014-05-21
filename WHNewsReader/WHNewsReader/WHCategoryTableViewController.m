@@ -46,7 +46,7 @@
         self.catId=cat.categoryId;
         self.typeFlag=1;
         self.tabBarItem.image=[UIImage imageNamed:@"archive-32.png"];
-        self.title=[[NSString alloc] initWithFormat:@"%@ Stories",self.catName];
+        self.title=[[NSString alloc] initWithFormat:@"%@",self.catName];
         _items = [NSArray array];
         
         [self loadStories];
@@ -251,7 +251,7 @@
         WHStoryObject *story = [_items objectAtIndex:[indexPath row]];
         WHStoryViewController *storyVC = [[WHStoryViewController alloc] init];
         storyVC.selectedStory = story;
-        storyVC.title=story.title;
+        
         
         [self.navigationController pushViewController:storyVC animated:YES];
     }
