@@ -138,9 +138,11 @@
             _isSuccessful = YES;
         }
         //[self parseJSONtoObjects:loginData];
+        NSData *responseData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+        [self parseJSONtoObjects:responseData];
         
         if(_isSuccessful == YES) {
-            NSLog(@"%hhd", _isSuccessful);
+            //NSLog(@"%hhd", _isSuccessful);
             [self createTabBar];
         }
     }];
@@ -166,8 +168,8 @@
     _loginData.user = _userData;
     
     //NSLog([dataDictionary objectForKey:@"accessToken"]);
-   //NSLog([userDictionary objectForKey:@"Id"]);
-   //NSLog([userDictionary objectForKey:@"firstName"]);
+    //NSLog([userDictionary objectForKey:@"Id"]);
+    //NSLog([userDictionary objectForKey:@"firstName"]);
     //NSLog([userDictionary objectForKey:@"lastName"]);
     //NSLog([userDictionary objectForKey:@"username"]);
     //NSLog([userDictionary objectForKey:@"email"]);
