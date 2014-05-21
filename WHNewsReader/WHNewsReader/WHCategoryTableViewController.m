@@ -155,31 +155,32 @@
     }
     else{
         UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, [tableView bounds].size.width, [tableView bounds].size.height)];
-        
+            
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        
+            
         WHStoryObject *story = [_items objectAtIndex:indexPath.row];
-        //cell.textLabel.text = [story title];
-        
+            //cell.textLabel.text = [story title];
+            
         UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [tableView bounds].size.width, 20)];
-        
+            
         [cell addSubview:customView];
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85,2.5,[tableView bounds].size.width - 100, 40)];
+        titleLabel.backgroundColor = [UIColor whiteColor];
         titleLabel.text = story.title;
         UILabel *subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 32.5, [tableView bounds].size.width - 100, 40)];
+        subTitleLabel.backgroundColor = [UIColor whiteColor];
         
         UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:story.imageUrl]]];
-        
+            
         titleLabel.font = [UIFont fontWithName:@"Avenir" size:18];
         subTitleLabel.font = [UIFont fontWithName:@"Avenir" size:12];
         subTitleLabel.textColor = [UIColor darkGrayColor];
         subTitleLabel.numberOfLines = 2;
         subTitleLabel.text = story.subtitle;
-        
+            
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-        
+            
         imageView.frame = CGRectMake(2.5,2.5,75,75);
-        
         [customView addSubview:titleLabel];
         [customView addSubview:subTitleLabel];
         [customView addSubview:imageView];
