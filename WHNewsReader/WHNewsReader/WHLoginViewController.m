@@ -150,9 +150,6 @@
             });
             
         }
-        else {
-            //[self failLogin];
-        }
     }];
     
 }

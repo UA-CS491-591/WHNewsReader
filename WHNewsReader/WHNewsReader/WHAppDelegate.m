@@ -27,10 +27,10 @@
 //    _tabBarController = [[UITabBarController alloc] init];
     
     WHLoginViewController *loginController = [[WHLoginViewController alloc] init];
-    loginController.title = @"Login";
-    UINavigationController *loginNavController = [[UINavigationController alloc] initWithRootViewController:loginController];
+    //loginController.title = @"Login";
+    //UINavigationController *loginNavController = [[UINavigationController alloc] initWithRootViewController:loginController];
     loginController.window = self.window;
-    [self.window setRootViewController:loginNavController];
+    [self.window setRootViewController:loginController];
 
 //    WHSearchTableViewController *searchController = [[WHSearchTableViewController alloc] init];
 //    searchController.title = @"Search Stories";
