@@ -179,6 +179,7 @@
     _userData.isWriter = [userDictionary objectForKey:@"isWriter"];
     _userData.imageUrl = [userDictionary objectForKey:@"imageURL"];
     _loginData.user = _userData;
+    [WHDataRetrieval setUserToken:_loginData.accessToken];
     
     //NSLog([dataDictionary objectForKey:@"accessToken"]);
     //NSLog([userDictionary objectForKey:@"Id"]);
