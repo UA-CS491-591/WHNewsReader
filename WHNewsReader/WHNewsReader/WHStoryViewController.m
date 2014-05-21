@@ -121,6 +121,7 @@
     
     WHAuthorViewController *authorVC = [[WHAuthorViewController alloc] init];
     authorVC.selectedAuthor = _author;
+    authorVC.title = _storyTitle.text;
     [self.navigationController pushViewController:authorVC animated:YES];
 }
 
@@ -148,6 +149,8 @@
          dispatch_async(dispatch_get_main_queue(), ^{
              WHStoryObject *story = _selectedStory;
              self.title = story.title;
+             
+             
              _storyTitle.backgroundColor = [UIColor whiteColor];
              _storySubtitle.backgroundColor = [UIColor whiteColor];
              _storyBody.backgroundColor = [UIColor whiteColor];
@@ -177,6 +180,11 @@
              UIImage *img = [[UIImage alloc] initWithData:data];
              
              _authorMiniImage.image = img;
+             UIImageView *imageView = [[UIImageView alloc] initWithImage:img];
+             imageView.contentMode = UIViewContentModeScaleAspectFill;
+             imageView.clipsToBounds = YES;
+             imageView.frame = CGRectMake(0,0,45,45);
+             [_authorMiniView addSubview:imageView];
              
              
              _authorName.backgroundColor = [UIColor whiteColor];

@@ -29,6 +29,7 @@
     WHLoginViewController *loginController = [[WHLoginViewController alloc] init];
     loginController.title = @"Login";
     UINavigationController *loginNavController = [[UINavigationController alloc] initWithRootViewController:loginController];
+    loginController.window = self.window;
     [self.window setRootViewController:loginNavController];
 
 //    WHSearchTableViewController *searchController = [[WHSearchTableViewController alloc] init];
