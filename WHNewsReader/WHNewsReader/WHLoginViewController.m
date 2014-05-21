@@ -60,7 +60,7 @@
 {
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     
-    UINavigationController *loginNav = [[UINavigationController alloc] initWithRootViewController:self];
+    //UINavigationController *loginNav = [[UINavigationController alloc] initWithRootViewController:self];
                                         
     WHSearchTableViewController *searchController = [[WHSearchTableViewController alloc] init];
     searchController.title = @"Search Stories";
@@ -77,8 +77,9 @@
     
     [tabBarController setViewControllers:@[recentNavController, searchNavController, catNavController]];
     
-    [loginNav pushViewController:tabBarController animated:YES];
-    //[self presentViewController:tabBarController animated:YES completion:nil];
+    //[loginNav pushViewController:tabBarController animated:YES];
+    [self presentViewController:tabBarController animated:YES completion:nil];
+    
     
 }
 
@@ -129,10 +130,13 @@
         NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         //Log out response
         NSLog(@"%@", responseString);
-        if(![responseString  isEqual: @"null"]) {
+//        if(![responseString  isEqual: @"null"]) {
+//            _isSuccessful = YES;
+//        }
+        if(([responseString rangeOfString:@"\"accessToken\":null"].location == NSNotFound))
+        {
             _isSuccessful = YES;
         }
-        
         //[self parseJSONtoObjects:loginData];
         
         if(_isSuccessful == YES) {

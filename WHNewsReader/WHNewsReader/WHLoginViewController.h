@@ -11,5 +11,6 @@
 @interface WHLoginViewController : UIViewController
 
 -(BOOL) isLoginSuccessful;
+@property UITabBarController *tabBarController;
 
 @end

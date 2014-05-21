@@ -65,7 +65,6 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     WHStoryObject *story = [_items objectAtIndex:indexPath.row];
-    //cell.textLabel.text = [story title];
     
     UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [tableView bounds].size.width, 20)];
     
