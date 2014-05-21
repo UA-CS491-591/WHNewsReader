@@ -145,8 +145,19 @@
             //NSLog(@"%hhd", _isSuccessful);
             [self createTabBar];
         }
+        else {
+            //[self failLogin];
+        }
     }];
     
+}
+
+- (void) failLogin
+{
+    UILabel *failed = [[UILabel alloc] initWithFrame:CGRectMake(100, 200, 200, 50)];
+    failed.text = @"Incorrect username or password.";
+    failed.textColor = [UIColor redColor];
+    [self.view addSubview:failed];
 }
 
 - (void)parseJSONtoObjects:(NSData *)responseData
