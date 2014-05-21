@@ -144,8 +144,11 @@
     WHCategoryObject *cat=[self.categories objectAtIndex:indexPath.row];
         
     cell.itemNameLabel.text=cat.name;
+        cell.itemNameLabel.backgroundColor=[UIColor whiteColor];
     cell.catDescription.text=cat.description;
+        cell.catDescription.backgroundColor=[UIColor whiteColor];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.backgroundColor=[UIColor whiteColor];
         
     
     
