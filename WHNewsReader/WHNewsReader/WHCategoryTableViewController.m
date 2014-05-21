@@ -170,6 +170,7 @@
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85,2.5,[tableView bounds].size.width - 100, 40)];
         titleLabel.backgroundColor = [UIColor whiteColor];
         titleLabel.text = story.title;
+        titleLabel.numberOfLines = 2;
         UILabel *subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 32.5, [tableView bounds].size.width - 100, 40)];
         subTitleLabel.backgroundColor = [UIColor whiteColor];
         
@@ -180,8 +181,11 @@
         subTitleLabel.textColor = [UIColor darkGrayColor];
         subTitleLabel.numberOfLines = 2;
         subTitleLabel.text = story.subtitle;
+        
             
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        imageView.contentMode=UIViewContentModeScaleAspectFill;
+        imageView.clipsToBounds=YES;
             
         imageView.frame = CGRectMake(2.5,2.5,75,75);
         [customView addSubview:titleLabel];
