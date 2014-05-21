@@ -148,6 +148,9 @@
          dispatch_async(dispatch_get_main_queue(), ^{
              WHStoryObject *story = _selectedStory;
              self.title = story.title;
+             _storyTitle.backgroundColor = [UIColor whiteColor];
+             _storySubtitle.backgroundColor = [UIColor whiteColor];
+             _storyBody.backgroundColor = [UIColor whiteColor];
              _storyTitle.text = story.title;
              _storySubtitle.text = story.subtitle;
              _storyBody.text = story.body;
@@ -176,7 +179,8 @@
              _authorMiniImage.image = img;
              
              
-             
+             _authorName.backgroundColor = [UIColor whiteColor];
+             _authorPosition.backgroundColor = [UIColor whiteColor];
              _authorName.text = [NSString stringWithFormat:@"%@ %@", _author.firstName, _author.lastName];
              _authorPosition.text = _author.position;
              
