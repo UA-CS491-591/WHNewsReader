@@ -95,6 +95,7 @@
 -(void)populateInitialData
 {
     [WHDataRetrieval setUserToken:@"b7a2ac80-67a7-41bb-a7ff-8e6574b0bdf2"];
+    
     [WHDataRetrieval getStoryRecent:[WHDataRetrieval userToken] completetionHandler:
      ^(NSURLResponse *response, NSData *data, NSError *error){
          

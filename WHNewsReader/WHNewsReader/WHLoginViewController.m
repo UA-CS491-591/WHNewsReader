@@ -58,7 +58,7 @@
 
 -(void) createTabBar
 {
-    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    _tabBarController = [[UITabBarController alloc] init];
     
     //UINavigationController *loginNav = [[UINavigationController alloc] initWithRootViewController:self];
                                         
@@ -75,10 +75,10 @@
     categoryController.title=@"Search By Category";
     UINavigationController *catNavController = [[UINavigationController alloc] initWithRootViewController:categoryController];
     
-    [tabBarController setViewControllers:@[recentNavController, searchNavController, catNavController]];
+    [_tabBarController setViewControllers:@[recentNavController, searchNavController, catNavController]];
     
     //[loginNav pushViewController:tabBarController animated:YES];
-    [self presentViewController:tabBarController animated:YES completion:nil];
+    [self presentViewController:_tabBarController animated:YES completion:nil];
     
     
 }
