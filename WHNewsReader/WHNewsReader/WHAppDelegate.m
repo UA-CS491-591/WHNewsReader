@@ -47,9 +47,9 @@
         
     [_tabBarController setViewControllers:@[recentNavController, searchNavController, catNavController]];
         
-    [loginNavController pushViewController:_tabBarController animated:YES];
+    //[loginNavController pushViewController:_tabBarController animated:YES];
         
-    //[self.window setRootViewController:_tabBarController];
+    [self.window setRootViewController:_tabBarController];
     
     
     return YES;
