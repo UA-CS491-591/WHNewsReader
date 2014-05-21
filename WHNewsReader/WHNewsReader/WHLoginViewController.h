@@ -12,5 +12,6 @@
 
 -(BOOL) isLoginSuccessful;
 @property UITabBarController *tabBarController;
+@property UIWindow *window;
 
 @end

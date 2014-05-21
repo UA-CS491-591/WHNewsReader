@@ -78,7 +78,8 @@
     [_tabBarController setViewControllers:@[recentNavController, searchNavController, catNavController]];
     
     //[loginNav pushViewController:tabBarController animated:YES];
-    [self presentViewController:_tabBarController animated:YES completion:nil];
+    [self.window setRootViewController:_tabBarController];
+//    [self presentViewController:_tabBarController animated:YES completion:nil];
     
     
 }
@@ -143,7 +144,11 @@
         
         if(_isSuccessful == YES) {
             //NSLog(@"%hhd", _isSuccessful);
-            [self createTabBar];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self createTabBar];
+
+            });
+            
         }
     }];
     
