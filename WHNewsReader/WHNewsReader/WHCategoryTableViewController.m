@@ -15,9 +15,9 @@
 @property NSArray *items;
 @property NSString *catName;
 @property NSString *catId;
+@property UIRefreshControl *refreshControl;
 @property int typeFlag;//0=init with categories, 1=init with stories
 
--(void)loadCategories;
 @end
 
 @implementation WHCategoryTableViewController
@@ -70,6 +70,7 @@
           _categories=sortedArray;
          dispatch_async(dispatch_get_main_queue(), ^{
          [self.tableView reloadData];
+             [self.refreshControl endRefreshing];
         });
      
      }];
@@ -88,6 +89,7 @@
          
          dispatch_async(dispatch_get_main_queue(), ^{
              [self.tableView reloadData];
+             [self.refreshControl endRefreshing];
          });
          
      }];
@@ -96,7 +98,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.refreshControl = [[UIRefreshControl alloc] initWithFrame:CGRectMake(0, -60, self.tableView.frame.size.width, 60)];
+    if(self.typeFlag==0){
+        [self.refreshControl addTarget:self action:@selector(loadCategories) forControlEvents:UIControlEventValueChanged];
+    }
+    else{
+        [self.refreshControl addTarget:self action:@selector(loadStories) forControlEvents:UIControlEventValueChanged];
+    }
     
+    [self.tableView addSubview:self.refreshControl];
     [self.tableView reloadData];
     
     // Uncomment the following line to preserve selection between presentations.
