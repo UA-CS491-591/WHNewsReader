@@ -52,8 +52,12 @@
 
 - (IBAction)didSelectGo:(id)sender
 {
-    [self.view endEditing:YES];
-    [self login];
+    if ((userNameTextField.text && userNameTextField.text.length > 0) && (passwordTextField.text && passwordTextField.text.length > 0))
+    {
+         [self.view endEditing:YES];
+         [self login];
+    }
+
 }
 
 -(void) createTabBar
