@@ -35,6 +35,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     WHAuthorObject *author = _selectedAuthor;
+    self.title = @"Washington Herald";
     
     
     NSURL *url = [NSURL URLWithString:author.imageUrl];
