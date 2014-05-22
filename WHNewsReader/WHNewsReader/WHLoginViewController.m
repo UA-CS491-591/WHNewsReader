@@ -151,14 +151,12 @@
             
         }
     }];
-    if(_isSuccessful == NO)
-        [self failLogin];
     
 }
 
 - (void) failLogin
 {
-    UILabel *failed = [[UILabel alloc] initWithFrame:CGRectMake(5, 200, 300, 50)];
+    UILabel *failed = [[UILabel alloc] initWithFrame:CGRectMake(100, 200, 200, 50)];
     failed.text = @"Incorrect username or password.";
     failed.textColor = [UIColor redColor];
     [self.view addSubview:failed];
