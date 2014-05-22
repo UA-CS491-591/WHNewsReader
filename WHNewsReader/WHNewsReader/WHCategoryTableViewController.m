@@ -177,11 +177,11 @@
         UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [tableView bounds].size.width, 20)];
             
         [cell addSubview:customView];
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85,1.5,[tableView bounds].size.width - 110, 45)];
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85,2.5,[tableView bounds].size.width - 100, 45)];
         titleLabel.backgroundColor = [UIColor whiteColor];
         titleLabel.text = story.title;
-        titleLabel.numberOfLines = 2;
-        UILabel *subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 41.5, [tableView bounds].size.width - 110, 40)];
+        titleLabel.numberOfLines = 0;
+        UILabel *subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 42.5, [tableView bounds].size.width - 100, 40)];
         subTitleLabel.backgroundColor = [UIColor whiteColor];
         
 //        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:story.imageUrl]]];
