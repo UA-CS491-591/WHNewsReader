@@ -121,7 +121,7 @@
     
     WHAuthorViewController *authorVC = [[WHAuthorViewController alloc] init];
     authorVC.selectedAuthor = _author;
-    authorVC.title = _storyTitle.text;
+    authorVC.title = @"Author Info";
     [self.navigationController pushViewController:authorVC animated:YES];
 }
 
@@ -148,7 +148,7 @@
          
          dispatch_async(dispatch_get_main_queue(), ^{
              WHStoryObject *story = _selectedStory;
-             self.title = story.title;
+             self.title = @"Washington Herald";
              
              
              _storyTitle.backgroundColor = [UIColor whiteColor];
@@ -162,11 +162,9 @@
              [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
              [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
              _storyDate.text = [dateFormatter stringFromDate:story.datePublished];
-             _storyImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:story.imageUrl]]];
-             
 
-             //WHAuthorObject *author = [[WHAuthorObject alloc] init];
-             //_authorMiniImage.image = [NSURL URLWithString:author.imageUrl];
+             
+             _storyImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:story.imageUrl]]];
              
              _author = [[WHAuthorObject alloc] init];
              _author.firstName = story.author.firstName;
@@ -185,8 +183,7 @@
              imageView.clipsToBounds = YES;
              imageView.frame = CGRectMake(0,0,45,45);
              [_authorMiniView addSubview:imageView];
-             
-             
+           
              _authorName.backgroundColor = [UIColor whiteColor];
              _authorPosition.backgroundColor = [UIColor whiteColor];
              _authorName.text = [NSString stringWithFormat:@"%@ %@", _author.firstName, _author.lastName];

@@ -77,18 +77,20 @@
     
     UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:story.imageUrl]]];
     
-    titleLabel.font = [UIFont fontWithName:@"Avenir" size:18];
+    titleLabel.font = [UIFont fontWithName:@"Avenir" size:16];
     subTitleLabel.font = [UIFont fontWithName:@"Avenir" size:12];
     subTitleLabel.textColor = [UIColor darkGrayColor];
     subTitleLabel.numberOfLines = 2;
+    titleLabel.numberOfLines = 2;
     subTitleLabel.text = story.subtitle;
+    titleLabel.text = story.title;
     
     UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     imageView.clipsToBounds = YES;
     
     
-    imageView.frame = CGRectMake(2.5,2.5,75,75);
+    imageView.frame = CGRectMake(0,0,80,80);
     [customView addSubview:titleLabel];
     [customView addSubview:subTitleLabel];
     [customView addSubview:imageView];

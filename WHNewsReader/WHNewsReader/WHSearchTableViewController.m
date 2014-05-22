@@ -223,7 +223,7 @@
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
         imageView.clipsToBounds = YES;
-        imageView.frame = CGRectMake(2.5,2.5,75,75);
+        imageView.frame = CGRectMake(0,0,80,80);
         
         [customView addSubview:titleLabel];
         [customView addSubview:subTitleLabel];
