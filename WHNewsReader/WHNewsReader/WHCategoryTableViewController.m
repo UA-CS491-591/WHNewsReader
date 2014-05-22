@@ -177,11 +177,11 @@
         UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [tableView bounds].size.width, 20)];
             
         [cell addSubview:customView];
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85,2.5,[tableView bounds].size.width - 100, 45)];
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85,1.5,[tableView bounds].size.width - 110, 65)];
         titleLabel.backgroundColor = [UIColor whiteColor];
         titleLabel.text = story.title;
         titleLabel.numberOfLines = 0;
-        UILabel *subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 42.5, [tableView bounds].size.width - 100, 40)];
+        UILabel *subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 64.5, [tableView bounds].size.width - 110, 10)];
         subTitleLabel.backgroundColor = [UIColor whiteColor];
         
 //        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:story.imageUrl]]];
@@ -197,13 +197,12 @@
         }
         
         
-        titleLabel.font = [UIFont fontWithName:@"Avenir" size:16];
+        titleLabel.font = [UIFont fontWithName:@"Avenir" size:17];
         titleLabel.lineBreakMode=NSLineBreakByWordWrapping;
         
-        subTitleLabel.font = [UIFont fontWithName:@"Avenir" size:12];
+        subTitleLabel.font = [UIFont fontWithName:@"Avenir" size:11];
         subTitleLabel.textColor = [UIColor darkGrayColor];
-        subTitleLabel.numberOfLines = 2;
-        subTitleLabel.lineBreakMode=NSLineBreakByWordWrapping;
+        subTitleLabel.numberOfLines = 1;
         subTitleLabel.text = story.subtitle;
         
             

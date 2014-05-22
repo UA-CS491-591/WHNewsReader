@@ -25,12 +25,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
     [self populateInitialData];
     
     _refreshControl = [[UIRefreshControl alloc] initWithFrame:CGRectMake(0, -60, _recentStoriesTableView.frame.size.width, 60)];
+    
     [_refreshControl addTarget:self action:@selector(populateInitialData) forControlEvents:UIControlEventValueChanged];
+    
+    
+    
     [_recentStoriesTableView addSubview:_refreshControl];
     
 }
@@ -67,13 +69,13 @@
     UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [tableView bounds].size.width, 20)];
     
     [cell addSubview:customView];
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85,1.5,[tableView bounds].size.width - 110, 45)];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85,1.5,[tableView bounds].size.width - 110, 65)];
     titleLabel.backgroundColor = [UIColor whiteColor];
     titleLabel.lineBreakMode=NSLineBreakByWordWrapping;
-    titleLabel.numberOfLines=2;
+    titleLabel.numberOfLines=3;
     titleLabel.text = story.title;
     
-    UILabel *subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 41.5, [tableView bounds].size.width - 110, 40)];
+    UILabel *subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 64.5, [tableView bounds].size.width - 110, 10)];
     subTitleLabel.backgroundColor = [UIColor whiteColor];
     
     UIImage *image;
@@ -87,11 +89,11 @@
         image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:story.imageUrl]]];
     }
     
-    titleLabel.font = [UIFont fontWithName:@"Avenir" size:16];
-    subTitleLabel.font = [UIFont fontWithName:@"Avenir" size:12];
+    titleLabel.font = [UIFont fontWithName:@"Avenir" size:17];
+    subTitleLabel.font = [UIFont fontWithName:@"Avenir" size:11];
     subTitleLabel.textColor = [UIColor darkGrayColor];
-    subTitleLabel.numberOfLines = 2;
-    subTitleLabel.lineBreakMode=NSLineBreakByWordWrapping;
+    subTitleLabel.numberOfLines = 1;
+    
     subTitleLabel.text = story.subtitle;
     titleLabel.text = story.title;
     
