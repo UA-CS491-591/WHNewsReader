@@ -25,14 +25,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
     [self populateInitialData];
     
     _refreshControl = [[UIRefreshControl alloc] initWithFrame:CGRectMake(0, -60, _recentStoriesTableView.frame.size.width, 60)];
-    
     [_refreshControl addTarget:self action:@selector(populateInitialData) forControlEvents:UIControlEventValueChanged];
-    
-    
-    
     [_recentStoriesTableView addSubview:_refreshControl];
     
 }
