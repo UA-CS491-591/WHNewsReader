@@ -75,7 +75,16 @@
     UILabel *subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 32.5, [tableView bounds].size.width - 100, 40)];
     subTitleLabel.backgroundColor = [UIColor whiteColor];
     
-    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:story.imageUrl]]];
+    UIImage *image;
+    
+    if(story.imageUrl == nil)
+    {
+        image = [UIImage imageNamed:@"Icononly copy120.png"];
+    }
+    else
+    {
+        image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:story.imageUrl]]];
+    }
     
     titleLabel.font = [UIFont fontWithName:@"Avenir" size:16];
     subTitleLabel.font = [UIFont fontWithName:@"Avenir" size:12];
@@ -99,7 +108,6 @@
 
 -(void)populateInitialData
 {
-    [WHDataRetrieval setUserToken:@"b7a2ac80-67a7-41bb-a7ff-8e6574b0bdf2"];
     
     [WHDataRetrieval getStoryRecent:[WHDataRetrieval userToken] completetionHandler:
      ^(NSURLResponse *response, NSData *data, NSError *error){
@@ -109,9 +117,7 @@
          dispatch_async(dispatch_get_main_queue(), ^{
              [self.recentStoriesTableView reloadData];
              [_refreshControl endRefreshing];
-             
          });
-         
      }];
 }
 

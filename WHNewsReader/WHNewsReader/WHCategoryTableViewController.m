@@ -15,9 +15,9 @@
 @property NSArray *items;
 @property NSString *catName;
 @property NSString *catId;
+@property UIRefreshControl *refreshControl;
 @property int typeFlag;//0=init with categories, 1=init with stories
 
--(void)loadCategories;
 @end
 
 @implementation WHCategoryTableViewController
@@ -46,7 +46,7 @@
         self.catId=cat.categoryId;
         self.typeFlag=1;
         self.tabBarItem.image=[UIImage imageNamed:@"archive-32.png"];
-        self.title=[[NSString alloc] initWithFormat:@"%@ Stories",self.catName];
+        self.title=[[NSString alloc] initWithFormat:@"%@",self.catName];
         _items = [NSArray array];
         
         [self loadStories];
@@ -58,7 +58,7 @@
 
 -(void)loadCategories{
     
-    [WHDataRetrieval setUserToken:@"b7a2ac80-67a7-41bb-a7ff-8e6574b0bdf2"];
+    //[WHDataRetrieval setUserToken:@"b7a2ac80-67a7-41bb-a7ff-8e6574b0bdf2"];
     [WHDataRetrieval getCategories:[WHDataRetrieval userToken] completetionHandler:
       ^(NSURLResponse *response, NSData *data, NSError *error){
      
@@ -70,6 +70,7 @@
           _categories=sortedArray;
          dispatch_async(dispatch_get_main_queue(), ^{
          [self.tableView reloadData];
+             [self.refreshControl endRefreshing];
         });
      
      }];
@@ -79,7 +80,7 @@
     
 }
 -(void)loadStories{
-    [WHDataRetrieval setUserToken:@"b7a2ac80-67a7-41bb-a7ff-8e6574b0bdf2"];
+    //[WHDataRetrieval setUserToken:@"b7a2ac80-67a7-41bb-a7ff-8e6574b0bdf2"];
     [WHDataRetrieval getStoryByCategory:self.catId userToken:[WHDataRetrieval userToken] completetionHandler:
      ^(NSURLResponse *response, NSData *data, NSError *error){
          
@@ -88,6 +89,7 @@
          
          dispatch_async(dispatch_get_main_queue(), ^{
              [self.tableView reloadData];
+             [self.refreshControl endRefreshing];
          });
          
      }];
@@ -96,8 +98,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.refreshControl = [[UIRefreshControl alloc] initWithFrame:CGRectMake(0, -60, self.tableView.frame.size.width, 60)];
+    if(self.typeFlag==0){
+        [self.refreshControl addTarget:self action:@selector(loadCategories) forControlEvents:UIControlEventValueChanged];
+    }
+    else{
+        [self.refreshControl addTarget:self action:@selector(loadStories) forControlEvents:UIControlEventValueChanged];
+    }
     
-    
+    [self.tableView addSubview:self.refreshControl];
+    [self.tableView reloadData];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -170,16 +180,29 @@
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85,2.5,[tableView bounds].size.width - 100, 40)];
         titleLabel.backgroundColor = [UIColor whiteColor];
         titleLabel.text = story.title;
+        titleLabel.numberOfLines = 2;
         UILabel *subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 32.5, [tableView bounds].size.width - 100, 40)];
         subTitleLabel.backgroundColor = [UIColor whiteColor];
         
-        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:story.imageUrl]]];
-            
+//        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:story.imageUrl]]];
+        UIImage *image;
+        
+        if(story.imageUrl == nil)
+        {
+            image = [UIImage imageNamed:@"Icononly copy120.png"];
+        }
+        else
+        {
+            image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:story.imageUrl]]];
+        }
+        
+        
         titleLabel.font = [UIFont fontWithName:@"Avenir" size:18];
         subTitleLabel.font = [UIFont fontWithName:@"Avenir" size:12];
         subTitleLabel.textColor = [UIColor darkGrayColor];
         subTitleLabel.numberOfLines = 2;
         subTitleLabel.text = story.subtitle;
+        
             
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -247,14 +270,16 @@
     
         // Push the view controller.
         [self.navigationController pushViewController:detailViewController animated:YES];
+        [self.tableView reloadData];
     }
     else{
         WHStoryObject *story = [_items objectAtIndex:[indexPath row]];
         WHStoryViewController *storyVC = [[WHStoryViewController alloc] init];
         storyVC.selectedStory = story;
-        storyVC.title=story.title;
+        
         
         [self.navigationController pushViewController:storyVC animated:YES];
+        [self.tableView reloadData];
     }
 }
 

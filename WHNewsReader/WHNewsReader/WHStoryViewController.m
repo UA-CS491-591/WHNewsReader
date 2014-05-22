@@ -138,7 +138,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [WHDataRetrieval setUserToken:@"b7a2ac80-67a7-41bb-a7ff-8e6574b0bdf2"];
     [WHDataRetrieval getStoryById:_selectedStory.storyId userToken:[WHDataRetrieval userToken] completetionHandler:
      ^(NSURLResponse *response, NSData *data, NSError *error){
          

@@ -16,8 +16,9 @@
 
 @interface WHSearchTableViewController ()
 
-@property NSArray *items;
+@property NSMutableArray *items;
 @property UISearchDisplayController *searchController;
+@property UISearchBar *searchBar;
 
 @end
 
@@ -45,93 +46,41 @@
     // disable search bar when loading
     //[tableSearchBar setUserInteractionEnabled:NO];
     
-    UIView *iconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 22, 25)];
-    UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 5, 15, 15)];
-    [iconImageView setImage:[UIImage imageNamed:@"Search.png"]];
-    [iconView addSubview:iconImageView];
+    self.tableView.separatorInset = UIEdgeInsetsZero;
     
-    //filteredArray = [[NSMutableArray alloc] init];
-    
-    // Set separator line under segmented control to 1 point
-    //    CGRect newFrame = separator.frame;
-    //    newFrame.size.width = separator.frame.size.width;
-    //    newFrame.size.height = 0.5f;
-  /*  UIView *separator = [[UIView alloc] init];
-    separator.frame = CGRectMake(0, 49, separator.frame.size.width, 0.5f);
-    
-    
-    
-    // Set up search bar
-    
-    UISearchBar* tableSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 44)];
-    tableSearchBar.placeholder = @"Search";
-    [tableSearchBar setScopeButtonTitles:[NSArray arrayWithObjects:@"Arrests", @"Warrants", nil]];
-    
-    tableSearchBar.delegate = self;
-    
-    WHSearchTableView *searchTableView = [[WHSearchTableView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-    searchTableView.tableHeaderView = tableSearchBar;
-    
-    //WHAppDelegate *delegate = (WHAppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    UITableViewController* tableViewController = [[UITableViewController alloc]initWithStyle:UITableViewStylePlain];
-    tableViewController.tableView = searchTableView;//ArrestsTableView;
-    
-    // Set up search display controller
-    self.searchController = [[UISearchDisplayController alloc] initWithSearchBar:tableSearchBar contentsController:self];
-    self.searchDisplayController.delegate = self;
-    self.searchDisplayController.searchResultsDataSource = self;
-    //    self.searchDisplayController.searchResultsDelegate = self;
-    self.searchController.searchResultsTableView.frame = [searchTableView frame];
-    
-    //Set up refresh control
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(refreshStoryTable) forControlEvents:UIControlEventValueChanged];
-    [searchTableView setContentOffset:CGPointMake(0.0f, -60.0f) animated:YES];
-    tableViewController.refreshControl = refreshControl;
-    [refreshControl beginRefreshing];
-
-    //[self addChildViewController:tableViewController];
-    
-    //self.view = searchTableView;
-    
-    */
-    
-    // setup searchBar and searchDisplayController
-    
+    /*  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(didTapMyButton:)];
+     */
     UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectZero];
+    
+    UISearchDisplayController *searchDC = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
     [searchBar sizeToFit];
     searchBar.delegate = self;
     searchBar.placeholder = @"Search";
     self.tableView.tableHeaderView = searchBar;
-    
-    UISearchDisplayController *searchDC = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
-    
-    // The above assigns self.searchDisplayController, but without retaining.
-    // Force the read-only property to be set and retained.
-    [self performSelector:@selector(setSearchDisplayController:) withObject:searchDC];
+    _searchBar = searchBar;
     
     searchDC.delegate = self;
     searchDC.searchResultsDataSource = self;
     searchDC.searchResultsDelegate = self;
+    [searchDC.searchBar setShowsCancelButton:YES];
     
     
-    [self populateInitialData];
+    
+    //[self populateInitialData];
 }
-
--(void)refreshStoryTable
-{
-
-}
+/*
+ -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+ [searchBar resignFirstResponder];
+ searchBar.text = @"";
+ }*/
 
 -(void)populateInitialData
 {
-    [WHDataRetrieval setUserToken:@"b7a2ac80-67a7-41bb-a7ff-8e6574b0bdf2"];
+    //[WHDataRetrieval setUserToken:@"b7a2ac80-67a7-41bb-a7ff-8e6574b0bdf2"];
     [WHDataRetrieval getStoryRecent:[WHDataRetrieval userToken] completetionHandler:
      ^(NSURLResponse *response, NSData *data, NSError *error){
          
-         _items = [NSObject arrayOfType:[WHStoryObject class] FromJSONData:data];
+         _items =[[NSMutableArray alloc] initWithArray:[NSObject arrayOfType:[WHStoryObject class] FromJSONData:data]];
          
          dispatch_async(dispatch_get_main_queue(), ^{
              [self.tableView reloadData];
@@ -139,17 +88,19 @@
      }];
 }
 
-
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-    if ([searchText  isEqual: @""]) {
-        [self populateInitialData];
+-(void)refreshTable
+{
+    if ([self.searchBar.text  isEqual: @""]) {
+        //[self populateInitialData];
+        _items = [[NSMutableArray alloc] init];
+        [self.tableView reloadData];
     }
     else {
-        [WHDataRetrieval setUserToken:@"b7a2ac80-67a7-41bb-a7ff-8e6574b0bdf2"];
-        [WHDataRetrieval getStorySearch:[WHDataRetrieval userToken] searchString:searchText completetionHandler:
+        //[WHDataRetrieval setUserToken:@"b7a2ac80-67a7-41bb-a7ff-8e6574b0bdf2"];
+        [WHDataRetrieval getStorySearch:[WHDataRetrieval userToken] searchString:self.searchBar.text completetionHandler:
          ^(NSURLResponse *response, NSData *data, NSError *error){
              
-             _items = [NSObject arrayOfType:[WHStoryObject class] FromJSONData:data];
+             _items =[[NSMutableArray alloc] initWithArray:[NSObject arrayOfType:[WHStoryObject class] FromJSONData:data]];
              
              dispatch_async(dispatch_get_main_queue(), ^{
                  [self.tableView reloadData];
@@ -157,6 +108,10 @@
              
          }];
     }
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    [self refreshTable];
 }
 
 - (void)didReceiveMemoryWarning
@@ -186,14 +141,17 @@
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
-    [self populateInitialData];
+    //[self populateInitialData];
+    [searchBar resignFirstResponder];
+    _searchBar.text = @"";
+    [self refreshTable];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, [tableView bounds].size.width, [tableView bounds].size.height)];
     
-   
+    
     
     
     @try {
@@ -212,7 +170,18 @@
         UILabel *subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 32.5, [tableView bounds].size.width - 100, 40)];
         subTitleLabel.backgroundColor = [UIColor whiteColor];
         
-        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:story.imageUrl]]];
+        //        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:story.imageUrl]]];
+        
+        UIImage *image;
+        
+        if(story.imageUrl == nil)
+        {
+            image = [UIImage imageNamed:@"Icononly copy120.png"];
+        }
+        else
+        {
+            image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:story.imageUrl]]];
+        }
         
         titleLabel.font = [UIFont fontWithName:@"Avenir" size:18];
         subTitleLabel.font = [UIFont fontWithName:@"Avenir" size:12];
@@ -234,57 +203,57 @@
         return cell;
     }
     
-   
+    
 }
 
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     /*[WHDataRetrieval setUserToken:@"b7a2ac80-67a7-41bb-a7ff-8e6574b0bdf2"];
-    [WHDataRetrieval getStorySearch:[WHDataRetrieval userToken] searchString:searchBar.text completetionHandler:
+     [WHDataRetrieval getStorySearch:[WHDataRetrieval userToken] searchString:searchBar.text completetionHandler:
      ^(NSURLResponse *response, NSData *data, NSError *error){
-         
-         _items = [NSObject arrayOfType:[WHStoryObject class] FromJSONData:data];
-         
-         dispatch_async(dispatch_get_main_queue(), ^{
-             [self.tableView reloadData];
-         });
-         
+     
+     _items = [NSObject arrayOfType:[WHStoryObject class] FromJSONData:data];
+     
+     dispatch_async(dispatch_get_main_queue(), ^{
+     [self.tableView reloadData];
+     });
+     
      }];
+     
+     [searchBar resignFirstResponder];*/
     
-    [searchBar resignFirstResponder];*/
-
 }
 
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
 {
     /*[WHDataRetrieval setUserToken:@"b7a2ac80-67a7-41bb-a7ff-8e6574b0bdf2"];
-    [WHDataRetrieval getStorySearch:[WHDataRetrieval userToken] searchString:searchBar.text completetionHandler:
+     [WHDataRetrieval getStorySearch:[WHDataRetrieval userToken] searchString:searchBar.text completetionHandler:
      ^(NSURLResponse *response, NSData *data, NSError *error){
-         
-         _items = [NSObject arrayOfType:[WHStoryObject class] FromJSONData:data];
-         
-         dispatch_async(dispatch_get_main_queue(), ^{
-             [self.tableView reloadData];
-         });
-         
+     
+     _items = [NSObject arrayOfType:[WHStoryObject class] FromJSONData:data];
+     
+     dispatch_async(dispatch_get_main_queue(), ^{
+     [self.tableView reloadData];
+     });
+     
      }];
-    
-    [searchBar resignFirstResponder];*/
+     
+     [searchBar resignFirstResponder];*/
 }
 
 - (void)handleSearch:(UISearchBar *)searchBar
 {
-   /* [WHDataRetrieval setUserToken:@"b7a2ac80-67a7-41bb-a7ff-8e6574b0bdf2"];
-    [WHDataRetrieval getStorySearch:[WHDataRetrieval userToken] searchString:searchBar.text completetionHandler:
+    /* [WHDataRetrieval setUserToken:@"b7a2ac80-67a7-41bb-a7ff-8e6574b0bdf2"];
+     [WHDataRetrieval getStorySearch:[WHDataRetrieval userToken] searchString:searchBar.text completetionHandler:
      ^(NSURLResponse *response, NSData *data, NSError *error){
-         
-         _items = [NSObject arrayOfType:[WHStoryObject class] FromJSONData:data];
-         
-         dispatch_async(dispatch_get_main_queue(), ^{
-             [self.tableView reloadData];
-         });
-         
+     
+     _items = [NSObject arrayOfType:[WHStoryObject class] FromJSONData:data];
+     
+     dispatch_async(dispatch_get_main_queue(), ^{
+     [self.tableView reloadData];
+     });
+     
      }];*/
     
     [searchBar resignFirstResponder];
@@ -292,53 +261,53 @@
 
 
 /*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
 
 /*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source
+ [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }
+ }
+ */
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+ {
+ }
+ */
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

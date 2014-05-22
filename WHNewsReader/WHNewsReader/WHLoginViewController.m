@@ -78,7 +78,8 @@
     [_tabBarController setViewControllers:@[recentNavController, searchNavController, catNavController]];
     
     //[loginNav pushViewController:tabBarController animated:YES];
-    [self presentViewController:_tabBarController animated:YES completion:nil];
+    [self.window setRootViewController:_tabBarController];
+//    [self presentViewController:_tabBarController animated:YES completion:nil];
     
     
 }
@@ -143,10 +144,22 @@
         
         if(_isSuccessful == YES) {
             //NSLog(@"%hhd", _isSuccessful);
-            [self createTabBar];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self createTabBar];
+
+            });
+            
         }
     }];
     
+}
+
+- (void) failLogin
+{
+    UILabel *failed = [[UILabel alloc] initWithFrame:CGRectMake(100, 200, 200, 50)];
+    failed.text = @"Incorrect username or password.";
+    failed.textColor = [UIColor redColor];
+    [self.view addSubview:failed];
 }
 
 - (void)parseJSONtoObjects:(NSData *)responseData
@@ -166,6 +179,7 @@
     _userData.isWriter = [userDictionary objectForKey:@"isWriter"];
     _userData.imageUrl = [userDictionary objectForKey:@"imageURL"];
     _loginData.user = _userData;
+    [WHDataRetrieval setUserToken:_loginData.accessToken];
     
     //NSLog([dataDictionary objectForKey:@"accessToken"]);
     //NSLog([userDictionary objectForKey:@"Id"]);
