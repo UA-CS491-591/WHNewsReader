@@ -31,7 +31,10 @@
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 
-#define OMDateFormat @"yyyy-MM-dd'T'HH:mm:ss.SSS"
+//2014-05-23T19:27:41.79Z
+
+
+#define OMDateFormat @"yyyy-MM-dd'T'HH:mm:ss.SS'Z'"
 #define OMTimeZone @"UTC"
 
 

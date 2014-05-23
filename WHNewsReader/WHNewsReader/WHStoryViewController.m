@@ -150,6 +150,7 @@
     // Do any additional setup after loading the view from its nib.
     [WHDataRetrieval getStoryById:_selectedStory.storyId userToken:[WHDataRetrieval userToken] completetionHandler:
      ^(NSURLResponse *response, NSData *data, NSError *error){
+         NSLog(@"%@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
          
 //         _items = [NSObject arrayOfType:[WHStoryObject class] FromJSONData:data];
          _selectedStory = [[WHStoryObject alloc] initWithJSONData:data];
