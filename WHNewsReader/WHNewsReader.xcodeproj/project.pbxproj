@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3F37F2881925234600565442 /* recent-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F37F2871925234600565442 /* recent-25.png */; };
+		3F38C674192F8FD40010121A /* shadowimage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F38C673192F8FD40010121A /* shadowimage.jpg */; };
 		3F804D79192518B100E0EFB9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F804D78192518B100E0EFB9 /* Foundation.framework */; };
 		3F804D7B192518B100E0EFB9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F804D7A192518B100E0EFB9 /* CoreGraphics.framework */; };
 		3F804D7D192518B100E0EFB9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F804D7C192518B100E0EFB9 /* UIKit.framework */; };
@@ -62,8 +63,6 @@
 		8FBE84B6192521CC0019AC09 /* WHLoginObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FBE84B5192521CC0019AC09 /* WHLoginObject.m */; };
 		8FBE84B9192522370019AC09 /* WHUserObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FBE84B8192522370019AC09 /* WHUserObject.m */; };
 		9C1E2DA2928242B9B519DCF7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B7CEEF13F54F8A8D189DDC /* libPods.a */; };
-		D8CF144C192E57390043973E /* shadowimage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8CF144B192E57390043973E /* shadowimage.jpg */; };
-		D8CF144E192E5D060043973E /* location-25.png in Resources */ = {isa = PBXBuildFile; fileRef = D8CF144D192E5D060043973E /* location-25.png */; };
 		D8CF1452192E5EC70043973E /* WHNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CF1450192E5EC70043973E /* WHNavigationViewController.m */; };
 		D8CF1453192E5EC70043973E /* WHNavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8CF1451192E5EC70043973E /* WHNavigationViewController.xib */; };
 /* End PBXBuildFile section */
@@ -81,6 +80,7 @@
 /* Begin PBXFileReference section */
 		00B7CEEF13F54F8A8D189DDC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F37F2871925234600565442 /* recent-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recent-25.png"; sourceTree = "<group>"; };
+		3F38C673192F8FD40010121A /* shadowimage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shadowimage.jpg; sourceTree = "<group>"; };
 		3F804D75192518B100E0EFB9 /* WHNewsReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WHNewsReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F804D78192518B100E0EFB9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3F804D7A192518B100E0EFB9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -155,8 +155,6 @@
 		8FBE84B7192522370019AC09 /* WHUserObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHUserObject.h; sourceTree = "<group>"; };
 		8FBE84B8192522370019AC09 /* WHUserObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHUserObject.m; sourceTree = "<group>"; };
 		9D9B8B24FA794C38A77C98E2 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		D8CF144B192E57390043973E /* shadowimage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = shadowimage.jpg; path = ../../../JPEG/shadowimage.jpg; sourceTree = "<group>"; };
-		D8CF144D192E5D060043973E /* location-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "location-25.png"; path = "../../../../../Library/Application Support/com.visualpharm.Icons8/Icons/iOS7/PNG/Maps/location/location-25.png"; sourceTree = "<group>"; };
 		D8CF144F192E5EC70043973E /* WHNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHNavigationViewController.h; sourceTree = "<group>"; };
 		D8CF1450192E5EC70043973E /* WHNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHNavigationViewController.m; sourceTree = "<group>"; };
 		D8CF1451192E5EC70043973E /* WHNavigationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WHNavigationViewController.xib; sourceTree = "<group>"; };
@@ -281,7 +279,6 @@
 			children = (
 				3FB1B13B1925195A008777F9 /* Splash screens */,
 				3F37F2871925234600565442 /* recent-25.png */,
-				D8CF144D192E5D060043973E /* location-25.png */,
 				3FFDD0DF192BA66800BCDE17 /* recent-25@2x.png */,
 				3FB1B12E1925191F008777F9 /* search-25.png */,
 				3FFDD0E3192BA78E00BCDE17 /* search-25@2x.png */,
@@ -363,7 +360,7 @@
 		3FB1B13B1925195A008777F9 /* Splash screens */ = {
 			isa = PBXGroup;
 			children = (
-				D8CF144B192E57390043973E /* shadowimage.jpg */,
+				3F38C673192F8FD40010121A /* shadowimage.jpg */,
 				3FB1B13719251957008777F9 /* SplashScreen3-04.png */,
 				3FB1B13819251957008777F9 /* SplashScreen4-02.png */,
 			);
@@ -549,6 +546,7 @@
 				3FB1B15D192519C4008777F9 /* WHCategoryTableViewController.xib in Resources */,
 				3F804D83192518B100E0EFB9 /* InfoPlist.strings in Resources */,
 				3F804D8B192518B100E0EFB9 /* Images.xcassets in Resources */,
+				3F38C674192F8FD40010121A /* shadowimage.jpg in Resources */,
 				3FFDD0E6192BAD1C00BCDE17 /* Default-568h@2x.png in Resources */,
 				3FFDD0E4192BA78E00BCDE17 /* search-25@2x.png in Resources */,
 				3FB1B161192519C4008777F9 /* WHRecentTableViewController.xib in Resources */,
@@ -556,7 +554,6 @@
 				3FB1B13A19251957008777F9 /* SplashScreen4-02.png in Resources */,
 				3FB1B12A19251916008777F9 /* icononly copy60.png in Resources */,
 				3FB1B165192519C4008777F9 /* WHStoryViewController.xib in Resources */,
-				D8CF144C192E57390043973E /* shadowimage.jpg in Resources */,
 				3FB1B12F1925191F008777F9 /* search-25.png in Resources */,
 				3FA50A4519254A2B009367A4 /* WHCategoryTableViewCell.xib in Resources */,
 				3FB1B15F192519C4008777F9 /* WHLoginViewController.xib in Resources */,
@@ -569,7 +566,6 @@
 				3FB1B12719251916008777F9 /* Icon.png in Resources */,
 				3FB1B12919251916008777F9 /* icononly copy58.png in Resources */,
 				3FB1B12519251916008777F9 /* Icon_1.png in Resources */,
-				D8CF144E192E5D060043973E /* location-25.png in Resources */,
 				D8CF1453192E5EC70043973E /* WHNavigationViewController.xib in Resources */,
 				3FFDD0E2192BA76100BCDE17 /* archive-32@2x.png in Resources */,
 				3FB1B163192519C4008777F9 /* WHSearchTableViewController.xib in Resources */,
