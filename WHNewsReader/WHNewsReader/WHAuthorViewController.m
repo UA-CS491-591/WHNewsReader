@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *authorPosition;
 @property (weak, nonatomic) IBOutlet UILabel *authorEmail;
 @property (weak, nonatomic) IBOutlet UILabel *authorUsername;
+@property (assign,readwrite) IBOutlet CGPoint center;
 
 @end
 
@@ -43,7 +44,26 @@
     UIImage *img = [[UIImage alloc] initWithData:data];
     
     _authorName.text = [NSString stringWithFormat:@"%@ %@", author.firstName, author.lastName]  ;
+  
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:img];
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    imageView.clipsToBounds = YES;
+    imageView.frame = CGRectMake(0,0,150,150);
+//    [self.view addSubview:imageView];
+
     _authorImage.image = img;
+    UIView *profilepic = [[UIView alloc]initWithFrame:imageView.frame];
+    [profilepic addSubview:imageView];
+    profilepic.layer.cornerRadius = profilepic.frame.size.height /2;
+    
+    profilepic.layer.masksToBounds = YES;
+    profilepic.layer.borderWidth = 0;
+    CGRect frame = profilepic.frame;
+    frame.origin.x = ((self.view.frame.size.width)/2) - 75;
+    frame.origin.y = 100;
+    profilepic.frame = frame;
+    [self.view addSubview:profilepic];
+    
     _authorPosition.text = author.position;
     _authorEmail.text = author.email;
     _authorUsername.text = author.username;

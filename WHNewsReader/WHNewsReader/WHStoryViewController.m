@@ -97,6 +97,10 @@
 #import "WHAuthorViewController.h"
 #import "WHDataRetrieval.h"
 #import "NSObject+ObjectMap.h"
+#import "WHNavigationViewController.h"
+#import "WHAppDelegate.h"
+#import "NSDate+DateTools.h"
+
 
 @interface WHStoryViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *storyBody;
@@ -124,6 +128,12 @@
     authorVC.title = @"Author Info";
     [self.navigationController pushViewController:authorVC animated:YES];
 }
+- (IBAction)navButtonPressed:(id)sender {
+    WHNavigationViewController *navVC = [[WHNavigationViewController alloc] init];
+//    navVC.selectedAuthor = _author;
+    navVC.title = @"Location of Story";
+    [self.navigationController pushViewController:navVC animated:YES];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -148,11 +158,9 @@
          dispatch_async(dispatch_get_main_queue(), ^{
              WHStoryObject *story = _selectedStory;
              self.title = @"Washington Herald";
-             
-             
-             _storyTitle.backgroundColor = [UIColor whiteColor];
-             _storySubtitle.backgroundColor = [UIColor whiteColor];
-             _storyBody.backgroundColor = [UIColor whiteColor];
+             self.view.backgroundColor = [UIColor snowColor];
+
+             _storyTitle.textColor = [UIColor indigoColor];
              _storyTitle.text = story.title;
              _storySubtitle.text = story.subtitle;
              _storyBody.text = story.body;
@@ -160,7 +168,12 @@
              
              [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
              [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
-             _storyDate.text = [dateFormatter stringFromDate:story.datePublished];
+             _storyDate.backgroundColor = [UIColor snowColor];
+//             _storyDate.text = [dateFormatter stringFromDate:story.datePublished];
+             _storyDate.text = story.datePublished.timeAgoSinceNow;
+             _storyDate.textColor = [UIColor indigoColor];
+             
+             
 
              
              _storyImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:story.imageUrl]]];
@@ -181,10 +194,25 @@
              imageView.contentMode = UIViewContentModeScaleAspectFill;
              imageView.clipsToBounds = YES;
              imageView.frame = CGRectMake(0,0,45,45);
-             [_authorMiniView addSubview:imageView];
-           
-             _authorName.backgroundColor = [UIColor whiteColor];
-             _authorPosition.backgroundColor = [UIColor whiteColor];
+
+             UIView *profilepic = [[UIView alloc]initWithFrame:imageView.frame];
+             [profilepic addSubview:imageView];
+             profilepic.layer.cornerRadius = profilepic.frame.size.height /2;
+             
+             UIView *circleColor = [[UIView alloc] initWithFrame:(CGRectMake(12.5,5, 50, 50))];
+             circleColor.backgroundColor = [UIColor snowColor];
+             circleColor.layer.cornerRadius = circleColor.frame.size.height/2;
+             [_authorMiniView addSubview:circleColor];
+             
+             profilepic.layer.masksToBounds = YES;
+             profilepic.layer.borderWidth = 0;
+             CGRect frame = profilepic.frame;
+             frame.origin.x = 15;
+             frame.origin.y = 7.5;
+             profilepic.frame = frame;
+             
+             [_authorMiniView addSubview:profilepic];
+
              _authorName.text = [NSString stringWithFormat:@"%@ %@", _author.firstName, _author.lastName];
              _authorPosition.text = _author.position;
              

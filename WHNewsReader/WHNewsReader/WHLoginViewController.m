@@ -13,6 +13,7 @@
 #import "WHRecentTableViewController.h"
 #import "WHSearchTableViewController.h"
 #import "WHCategoryTableViewController.h"
+#import "WHAppDelegate.h"
 
 @interface WHLoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
@@ -42,6 +43,8 @@
     _operationQueue = [[NSOperationQueue alloc] init];
     _userData = [[WHUserObject alloc] init];
     _loginData = [[WHLoginObject alloc] init];
+
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -60,22 +63,33 @@
 {
     _tabBarController = [[UITabBarController alloc] init];
     
+    
     //UINavigationController *loginNav = [[UINavigationController alloc] initWithRootViewController:self];
                                         
     WHSearchTableViewController *searchController = [[WHSearchTableViewController alloc] init];
     searchController.title = @"Search Stories";
     UINavigationController *searchNavController = [[UINavigationController alloc] initWithRootViewController:searchController];
+    searchNavController.navigationBar.barTintColor = [UIColor indigoColor];
+    searchNavController.navigationBar.tintColor = [UIColor snowColor];
+    [searchNavController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor snowColor]}];
     
     WHRecentTableViewController *recentController = [[WHRecentTableViewController alloc] init];
     recentController.title = @"Recent Stories";
     recentController.tabBarItem.image = [UIImage imageNamed:@"recent-25.png"];
     UINavigationController *recentNavController = [[UINavigationController alloc] initWithRootViewController:recentController];
-    
+    recentNavController.navigationBar.barTintColor = [UIColor indigoColor];
+    recentNavController.navigationBar.tintColor = [UIColor snowColor];
+                                                                [recentNavController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor snowColor]}];
+                                                                
     WHCategoryTableViewController *categoryController =[[WHCategoryTableViewController alloc] initWithCats];
     categoryController.title=@"Search By Category";
     UINavigationController *catNavController = [[UINavigationController alloc] initWithRootViewController:categoryController];
     
     [_tabBarController setViewControllers:@[recentNavController, searchNavController, catNavController]];
+    catNavController.navigationBar.barTintColor = [UIColor indigoColor];
+    catNavController.navigationBar.tintColor = [UIColor snowColor];
+                                                                [catNavController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor snowColor]}];
+                                                             
     
     //[loginNav pushViewController:tabBarController animated:YES];
     [self.window setRootViewController:_tabBarController];

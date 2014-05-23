@@ -11,6 +11,7 @@
 #import "WHDataRetrieval.h"
 #import "WHStoryObject.h"
 #import "WHStoryViewController.h"
+#import "WHAppDelegate.h"
 
 @interface WHRecentTableViewController ()
 
@@ -28,11 +29,7 @@
     [self populateInitialData];
     
     _refreshControl = [[UIRefreshControl alloc] initWithFrame:CGRectMake(0, -60, _recentStoriesTableView.frame.size.width, 60)];
-    
     [_refreshControl addTarget:self action:@selector(populateInitialData) forControlEvents:UIControlEventValueChanged];
-    
-    
-    
     [_recentStoriesTableView addSubview:_refreshControl];
     
 }
@@ -64,16 +61,17 @@
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
+
     WHStoryObject *story = [_items objectAtIndex:indexPath.row];
     
     UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [tableView bounds].size.width, 20)];
     
     [cell addSubview:customView];
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85,2.5,[tableView bounds].size.width - 100, 40)];
-    titleLabel.backgroundColor = [UIColor whiteColor];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85,2.5,[tableView bounds].size.width - 150, 40)];
+    titleLabel.backgroundColor = [UIColor snowColor];
     titleLabel.text = story.title;
-    UILabel *subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 32.5, [tableView bounds].size.width - 100, 40)];
-    subTitleLabel.backgroundColor = [UIColor whiteColor];
+    UILabel *subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 32.5, [tableView bounds].size.width - 150, 40)];
+    subTitleLabel.backgroundColor = [UIColor snowColor];
     
     UIImage *image;
     
@@ -98,7 +96,6 @@
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     imageView.clipsToBounds = YES;
     
-    
     imageView.frame = CGRectMake(0,0,80,80);
     [customView addSubview:titleLabel];
     [customView addSubview:subTitleLabel];
@@ -113,7 +110,6 @@
      ^(NSURLResponse *response, NSData *data, NSError *error){
          
          _items = [NSObject arrayOfType:[WHStoryObject class] FromJSONData:data];
-         
          dispatch_async(dispatch_get_main_queue(), ^{
              [self.recentStoriesTableView reloadData];
              [_refreshControl endRefreshing];
@@ -126,6 +122,7 @@
     WHStoryObject *story = [_items objectAtIndex:[indexPath row]];
     WHStoryViewController *storyVC = [[WHStoryViewController alloc] init];
     storyVC.selectedStory = story;
+//    WHAuthorObject *author = [
     
     [self.navigationController pushViewController:storyVC animated:YES];
     

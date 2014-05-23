@@ -7,7 +7,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AuthorViewController">
             <connections>
                 <outlet property="authorEmail" destination="wZ9-JH-3L1" id="9Ce-hp-iLK"/>
-                <outlet property="authorImage" destination="JTt-vx-ZQF" id="lUA-Q0-Rpm"/>
                 <outlet property="authorName" destination="Qfy-yQ-myT" id="Wc6-Fg-x1p"/>
                 <outlet property="authorPosition" destination="2IW-jK-bff" id="0LD-Is-sCo"/>
                 <outlet property="view" destination="1" id="3"/>
@@ -25,10 +24,6 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JTt-vx-ZQF">
-                    <rect key="frame" x="85" y="110" width="150" height="150"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Position" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2IW-jK-bff">
                     <rect key="frame" x="20" y="273" width="280" height="38"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

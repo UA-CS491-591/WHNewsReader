@@ -1,10 +1,13 @@
 PODS:
   - Colours (5.3.0)
+  - DateTools (1.2.0)
 
 DEPENDENCIES:
   - Colours
+  - DateTools
 
 SPEC CHECKSUMS:
   Colours: 60b2e4dbdf2a0f077a98a07dae1ed18ac3333e21
+  DateTools: 1765514cd526b2c2ab491b7747df67e0a82e97c1
 
 COCOAPODS: 0.33.1
