@@ -19,6 +19,7 @@
 @property NSMutableArray *items;
 @property UISearchDisplayController *searchController;
 @property UISearchBar *searchBar;
+@property UITextField *textfield;
 
 @end
 
@@ -43,7 +44,7 @@
     
     
     
-    // disable search bar when loading
+    // disable serch bar when loading
     //[tableSearchBar setUserInteractionEnabled:NO];
     
     self.tableView.separatorInset = UIEdgeInsetsZero;
@@ -64,10 +65,28 @@
     searchDC.searchResultsDelegate = self;
     [searchDC.searchBar setShowsCancelButton:YES];
     
+    for (UIView* subView in self.searchBar.subviews) {
+        for (UIView* searchView in subView.subviews) {
+            if ([searchView isKindOfClass:[UITextField class]]) {
+                _textfield = (UITextField*)searchView;
+                break;
+            }
+        }
+    }
+    [searchBar becomeFirstResponder];
+    [_textfield becomeFirstResponder];
     
     
     //[self populateInitialData];
 }
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [_textfield becomeFirstResponder];
+}
+
 /*
  -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
  [searchBar resignFirstResponder];
@@ -164,12 +183,10 @@
         UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [tableView bounds].size.width, 20)];
         
         [cell addSubview:customView];
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85,1.5,[tableView bounds].size.width - 110, 65)];
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85,2.5,[tableView bounds].size.width - 100, 40)];
         titleLabel.backgroundColor = [UIColor whiteColor];
-        titleLabel.lineBreakMode=NSLineBreakByWordWrapping;
-        titleLabel.numberOfLines=0;
         titleLabel.text = story.title;
-        UILabel *subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 64.5, [tableView bounds].size.width - 110, 10)];
+        UILabel *subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 32.5, [tableView bounds].size.width - 100, 40)];
         subTitleLabel.backgroundColor = [UIColor whiteColor];
         
         //        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:story.imageUrl]]];
@@ -185,10 +202,10 @@
             image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:story.imageUrl]]];
         }
         
-        titleLabel.font = [UIFont fontWithName:@"Avenir" size:17];
-        subTitleLabel.font = [UIFont fontWithName:@"Avenir" size:11];
+        titleLabel.font = [UIFont fontWithName:@"Avenir" size:18];
+        subTitleLabel.font = [UIFont fontWithName:@"Avenir" size:12];
         subTitleLabel.textColor = [UIColor darkGrayColor];
-        subTitleLabel.numberOfLines = 1;
+        subTitleLabel.numberOfLines = 2;
         subTitleLabel.text = story.subtitle;
         
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
