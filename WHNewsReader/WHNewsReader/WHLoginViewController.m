@@ -55,8 +55,12 @@
 
 - (IBAction)didSelectGo:(id)sender
 {
-    [self.view endEditing:YES];
-    [self login];
+    if ((userNameTextField.text && userNameTextField.text.length > 0) && (passwordTextField.text && passwordTextField.text.length > 0))
+    {
+         [self.view endEditing:YES];
+         [self login];
+    }
+
 }
 
 -(void) createTabBar
@@ -101,7 +105,7 @@
 - (BOOL) textFieldShouldReturn:(UITextField *)textField
 {
     [self.view endEditing:YES];
-    [self makeRequest];
+    [self login];
     return YES;
 }
 
@@ -144,7 +148,7 @@
         //Decode to string
         NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         //Log out response
-        NSLog(@"%@", responseString);
+       // NSLog(@"%@", responseString);
 //        if(![responseString  isEqual: @"null"]) {
 //            _isSuccessful = YES;
 //        }
@@ -162,7 +166,11 @@
                 [self createTabBar];
 
             });
-            
+        }
+        else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //[self failLogin];
+            });
         }
     }];
     
@@ -170,9 +178,10 @@
 
 - (void) failLogin
 {
-    UILabel *failed = [[UILabel alloc] initWithFrame:CGRectMake(100, 200, 200, 50)];
+    UILabel *failed = [[UILabel alloc] initWithFrame:CGRectMake(25, 200, 250, 50)];
     failed.text = @"Incorrect username or password.";
     failed.textColor = [UIColor redColor];
+    [failed setFont: [UIFont systemFontOfSize:11]];
     [self.view addSubview:failed];
 }
 

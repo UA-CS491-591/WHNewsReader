@@ -84,11 +84,11 @@
         image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:story.imageUrl]]];
     }
     
-    titleLabel.font = [UIFont fontWithName:@"Avenir" size:18];
-    subTitleLabel.font = [UIFont fontWithName:@"Avenir" size:12];
+    titleLabel.font = [UIFont fontWithName:@"Avenir" size:17];
+    subTitleLabel.font = [UIFont fontWithName:@"Avenir" size:11];
     subTitleLabel.textColor = [UIColor darkGrayColor];
-    subTitleLabel.numberOfLines = 2;
-    titleLabel.numberOfLines = 2;
+    subTitleLabel.numberOfLines = 1;
+    
     subTitleLabel.text = story.subtitle;
     titleLabel.text = story.title;
     
