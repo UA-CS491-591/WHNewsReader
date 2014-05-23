@@ -55,7 +55,7 @@
 
 - (IBAction)didSelectGo:(id)sender
 {
-    if ((userNameTextField.text && userNameTextField.text.length > 0) && (passwordTextField.text && passwordTextField.text.length > 0))
+    if ((_usernameTextField.text && _usernameTextField.text.length > 0) && (_passwordTextField.text && _passwordTextField.text.length > 0))
     {
          [self.view endEditing:YES];
          [self login];
